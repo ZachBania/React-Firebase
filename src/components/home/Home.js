@@ -1,11 +1,10 @@
 import './../../App.css';
-import React, { useCallback } from 'react';
+import React from 'react';
 
 // Component Imports
 import DefaultHeader from '../parts/DefaultHeader';
 import UserPanel from '../user/UserPanel';
-import UsersPanel from '../user/UsersPanel';
-import { UserProvider } from "../../providers/AuthContext";
+
 // Bootstrap Imports
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

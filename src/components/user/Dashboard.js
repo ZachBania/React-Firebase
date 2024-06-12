@@ -1,9 +1,14 @@
+// Core Imports
 import React, { useState } from "react"
-import { Row, Col, Card, Button, Alert, Table } from "react-bootstrap"
 import { useAuth } from "../../providers/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+
+// Component Imports
 import StaticHeader from "../parts/StaticHeader"
 import UsersPanel from "./UsersPanel"
+
+// Bootstrap Imports
+import { Row, Col, Alert, Table } from "react-bootstrap"
 
 export default function Dashboard() {
     const [error, setError] = useState("")

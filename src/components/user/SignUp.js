@@ -1,9 +1,12 @@
-
+// Core Imports
 import React, { useRef, useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../../providers/AuthContext";
-import Flag from "../parts/Flag";
 import { Link } from "react-router-dom";
+
+// Component Imports
+
+// Bootstrap Imports
+import { Form, Button, Alert } from "react-bootstrap";
 
 const SignUp = () => {
 

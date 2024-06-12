@@ -1,18 +1,15 @@
 // Core Imports
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Component Imports
 import StaticHeader from '../parts/StaticHeader';
 import Flag from './../parts/Flag';
-
-
+import BS_Badge from "../parts/BS_Badge";
 
 // Bootstrap Imports
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import BS_Badge from "../parts/BS_Badge";
 import Stack from 'react-bootstrap/Stack';
 
 function Bootstrap() {

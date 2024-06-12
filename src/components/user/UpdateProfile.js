@@ -1,8 +1,13 @@
+// Core Imports
 import React, { useRef, useState } from "react"
-import { Row, Col, Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../../providers/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+
+// Component Imports
 import StaticHeader from "../parts/StaticHeader"
+
+// Bootstrap Imports
+import { Row, Col, Form, Button, Alert } from "react-bootstrap"
 
 export default function UpdateProfile() {
   const emailRef = useRef()

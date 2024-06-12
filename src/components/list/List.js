@@ -1,21 +1,14 @@
 // Core Imports
 import React, { useEffect, useState } from "react";
-import exData from "../../assets/api/exData";
-import { UserProvider } from "../../providers/AuthContext";
-//Component Import
-import Navigation from "../navigation/Navigation";
-import Flag from "../parts/Flag";
-import ListRow from './ListRow';
+import exData from "../../api/exData";
 
-// Bootstrap Imports
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table';
+//Component Import
+import ListRow from './ListRow';
 import StaticHeader from "../parts/StaticHeader";
 
-import Pagination from 'react-bootstrap/Pagination';
-
+// Bootstrap Imports
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function List() {
 

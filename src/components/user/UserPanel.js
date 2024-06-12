@@ -1,12 +1,11 @@
-
-import { useContext, useState, useEffect } from "react";
-import AuthContext, { useAuth } from "../../providers/AuthContext";
+// Core Imports
+import { useState } from "react";
+import { useAuth } from "../../providers/AuthContext";
 import { Link } from "react-router-dom";
-import { Card, Button, Alert } from "react-bootstrap"
-import { db } from './../../api/firebase';
-import { doc, getDoc, getDocs, getFirestore, addDoc, collection } from 'firebase/firestore';
 
+// Component Imports
 
+// Bootstrap Imports
 
 const UserPanel = () => {
     const [error, setError] = useState("")

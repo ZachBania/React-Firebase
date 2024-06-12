@@ -1,7 +1,11 @@
 // Core Imports
-import React, { useContext } from "react";
-import { Link, Button, useLocation } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+
+// Component Imports
 import BS_Badge from "../parts/BS_Badge";
+
+// Bootstrap Imports
 import Stack from 'react-bootstrap/Stack';
 
 const ListRow = ({project})=> {

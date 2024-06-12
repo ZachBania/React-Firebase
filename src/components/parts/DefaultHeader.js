@@ -10,10 +10,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const REACT_VERSION = React.version;
-// const FIREBASE_VERSION = FirebaseFirestore.version;
 
 function DefaultHeader(props) {
-    // 'primary','secondary','success','danger','warning','info','light','dark',
     const [show, setShow] = useState(true);
 
     if (show) {
@@ -25,6 +23,7 @@ function DefaultHeader(props) {
             </Row>
         );
     }
+    
   }
 
 export default DefaultHeader;

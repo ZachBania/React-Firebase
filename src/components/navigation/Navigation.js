@@ -1,8 +1,8 @@
 // Core Imports
-import { Link, Routes, Route } from 'react-router-dom';
-import logo from './logo512.png';
-import { useContex, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from '../../providers/AuthContext';
+import logo from './logo512.png';
 
 // Component Imports
 

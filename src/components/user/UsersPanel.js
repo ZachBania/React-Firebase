@@ -1,10 +1,13 @@
-
-import { useContext, useState, useEffect } from "react";
-import AuthContext, { useAuth } from "../../providers/AuthContext";
-import { Link } from "react-router-dom";
-import { Card, Button, Alert, Table } from "react-bootstrap"
+// Core Imports
+import { useState, useEffect } from "react";
+import { useAuth } from "../../providers/AuthContext";
 import { db } from '../../api/firebase';
 import { doc, getDoc, getDocs, getFirestore, addDoc, collection } from 'firebase/firestore';
+
+// Component Imports
+
+// Bootstrap Imports
+import { Table } from "react-bootstrap"
 
 
 

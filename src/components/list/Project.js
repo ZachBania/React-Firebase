@@ -1,17 +1,15 @@
 // Core Imports
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import exData from "./../../assets/api/exData";
-import UserContext from "../../providers/AuthContext";
-import { UserProvider } from "../../providers/AuthContext";
+import exData from "../../api/exData";
+
 // Component Imports
 import StaticHeader from '../parts/StaticHeader';
+import PageNotFound from "../navigation/PageNotFound";
 
 // Bootstrap Imports
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PageNotFound from "../navigation/PageNotFound";
 
 function Project(props) {
     const { id } = useParams();
