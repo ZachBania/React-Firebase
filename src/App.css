@@ -12106,7 +12106,7 @@ footer {
   font-size: 2em;
   color: #000;
   margin: 0;
-  padding: 0;
+  padding: 0 0.25em;
 }
 @media (min-width: 768px) {
   .static-header-component h1, .static-header-component .h1 {
@@ -12197,6 +12197,27 @@ footer {
   margin: 0 0 1em 0;
 }
 
+@media (min-width: 768px) {
+  .profile-container {
+    padding: 1em 0 1em 2em;
+  }
+}
+.profile-container .btn {
+  margin: 1em 0 0 0;
+}
+
+@media (min-width: 768px) {
+  .update-profile-container {
+    padding: 0 0 0 2em;
+  }
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    padding: 0 0 0 2em;
+  }
+}
+
 .pageNotFound-container {
   padding: 1em 0;
 }
@@ -12224,14 +12245,27 @@ footer {
 }
 
 .users-panel-container {
-  display: none;
+  padding: 1em 0;
 }
-@media (min-width: 768px) {
-  .users-panel-container {
-    display: flex;
-    align-items: center;
-    padding: 1em 0;
-  }
+
+form {
+  border: rgba(0, 0, 0, 0.25) solid 1px;
+  border-radius: 0.5em;
+  padding: 1em !important;
+  margin: 1em 0;
+  max-width: 400px;
+}
+form div {
+  padding: 0 0 1em 0 !important;
+}
+form input {
+  padding: 0.25em 0.5em !important;
+}
+form .submit-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1em;
+  padding: 1em 0;
 }
 
 table thead tr {

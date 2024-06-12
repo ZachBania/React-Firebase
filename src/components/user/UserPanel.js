@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 
 const UserPanel = () => {
     const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth();
-
-    const [users, setUsers] = useState([]);
+    const { currentUser, currentFirestoreUser, logout } = useAuth();
 
     async function handleLogout() {
         setError("")
@@ -29,8 +27,7 @@ const UserPanel = () => {
             <div className="user-panel-container">
                 {currentUser ? (
                     <>
-                        <p>Welcome, {currentUser.displayName}</p>
-
+                        <p>{currentFirestoreUser.first_name ? "Welcome, " + currentFirestoreUser.first_name : ''}</p>
                     </>
                 ) : (
                     <>

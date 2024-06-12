@@ -28,23 +28,23 @@ function Project(props) {
     }
 
     return (
-    <>
-        <Row>
-            <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
-                <StaticHeader headerText={project.name}/>
-            </Col>
-        </Row> 
+        <>
+            <Row>
+                <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
+                    <StaticHeader headerText={project.name} />
+                </Col>
+            </Row>
 
-        <Row>
-            <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
-                <div className="project-detail-container">
-                    <p className="project-excerpt">{project.excerpt}</p>
-                    <Link to="/projects" className="btn">Back to projects</Link>
-                </div>
-            </Col>
-        </Row>      
+            <Row>
+                <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
+                    <div className="project-detail-container">
+                        <p className="project-excerpt">{project.excerpt}</p>
+                        <Link to="/projects" className="btn">Back to projects</Link>
+                    </div>
+                </Col>
+            </Row>
 
-    </>
+        </>
     );
 }
 

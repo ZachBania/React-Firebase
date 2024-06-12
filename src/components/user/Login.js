@@ -6,7 +6,8 @@ import { useAuth } from "../../providers/AuthContext";
 import StaticHeader from "../parts/StaticHeader";
 
 // Bootstrap Imports
-import { Row, Col, Form, Button, Alert } from "react-bootstrap"
+import { Row, Col, Form, Alert, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const emailRef = useRef()
@@ -42,21 +43,23 @@ export default function Login() {
 
             <Row>
                 <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
-
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required />
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} type="submit">
-                            Log In
-                        </Button>
-                    </Form>
+                    <div className="login-container">
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group id="email">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control type="email" ref={emailRef} required />
+                            </Form.Group>
+                            <Form.Group id="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" ref={passwordRef} required />
+                            </Form.Group>
+                            <div className="submit-container">
+                                <p><Link to="/" className="btn">Cancel</Link></p>
+                                <p><Button disabled={loading} type="submit" className="btn">Log In</Button></p>
+                            </div>
+                        </Form>
+                    </div>
                 </Col>
             </Row>
 

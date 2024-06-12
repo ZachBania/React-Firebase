@@ -181,7 +181,7 @@ footer {
         font-size: 2em;
         color: $color_primary_dark;
         margin: 0;
-        padding: 0;
+        padding: 0 .25em;
         
         @media(min-width: 768px) {
             padding: 0 1em;
@@ -287,6 +287,31 @@ footer {
 
 }
 
+.profile-container {
+    
+    @media(min-width: 768px) {
+        padding: 1em 0 1em 2em;
+    }
+
+    .btn {
+        margin: 1em 0 0 0;
+    }
+}
+
+.update-profile-container {
+
+    @media(min-width: 768px) {
+        padding: 0 0 0 2em;
+    }
+}
+
+.login-container {
+
+    @media(min-width: 768px) {
+        padding: 0 0 0 2em;
+    }
+}
+
 .pageNotFound-container {
     padding: 1em 0;
     @media(min-width: 768px) {
@@ -313,11 +338,28 @@ footer {
 }
 
 .users-panel-container {
-    display: none;
-    
-    @media(min-width:768px) {
+    padding: 1em 0;
+}
+
+form {
+    border: rgba(0,0,0, .25) solid 1px;
+    border-radius: .5em;
+    padding: 1em !important;
+    margin: 1em 0;
+    max-width: 400px;
+
+    div {
+        padding: 0 0 1em 0 !important;
+    }
+
+    input {
+        padding: .25em .5em !important;
+    }
+
+    .submit-container {
         display: flex;
-        align-items: center;
+        flex-wrap: nowrap;
+        gap: 1em;
         padding: 1em 0;
     }
 }
@@ -426,11 +468,3 @@ table {
         }
     }
 }
-
-.table {
-
-}
-
-
-
-

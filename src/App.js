@@ -1,8 +1,10 @@
-// App.js
+// Core Imports
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { db } from './api/firebase';
 
+// Component Imports
 import Navigation from './components/navigation/Navigation';
 import Home from './components/home/Home';
 import Project from './components/list/Project';
@@ -14,11 +16,17 @@ import { AuthProvider } from './providers/AuthContext';
 import Container from 'react-bootstrap/Container';
 import Footer from './components/navigation/Footer';
 import PageNotFound from './components/navigation/PageNotFound';
-import Dashboard from './components/user/Dashboard';
+import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
 import UserPanel from './components/user/UserPanel';
 
+
+import { doc, getDoc } from "firebase/firestore";
+import { useAuth } from './providers/AuthContext';
+
+
 function App() {
+
   return (
     <AuthProvider>
       <Navigation />
@@ -30,7 +38,7 @@ function App() {
           <Route path="/bootstrap" element={<Bootstrap />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/signup" element={<SignUp />} /> */}
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/update-profile" element={<UpdateProfile />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

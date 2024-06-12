@@ -10,15 +10,15 @@ import StaticHeader from "../parts/StaticHeader"
 import { Row, Col, Form, Button, Alert } from "react-bootstrap"
 
 export default function UpdateProfile() {
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
-  const displayNameRef = useRef()
-
-  const { currentUser, updatePassword, updateEmail, updateProfile } = useAuth()
+  const { currentUser, currentFirestoreUser, updatePassword, updateEmail, updateSummary } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   //   const history = useHistory()
+
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+  const summaryRef = useRef()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -33,12 +33,16 @@ export default function UpdateProfile() {
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value))
     }
-    if (displayNameRef.current.value) {
-      promises.push(updateProfile(displayNameRef.current.value))
-    }
+
     if (passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value))
     }
+
+    if ((summaryRef.current.value != currentFirestoreUser.summary) && (summaryRef.current.value !== undefined)) {
+      promises.push(updateSummary(summaryRef.current.value !== null ? summaryRef.current.value : ""));
+    }
+
+    updateSummary()
 
     Promise.all(promises)
       .then(() => {
@@ -64,50 +68,51 @@ export default function UpdateProfile() {
           </Row>
           <Row>
             <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
+              <div className="update-profile-container">
+                {error && <Alert variant="danger">{error}</Alert>}
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group id="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      ref={emailRef}
+                      required
+                      defaultValue={currentUser.email}
+                    />
+                  </Form.Group>
+                  <Form.Group id="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      ref={passwordRef}
+                      defaultValue={''}
+                      placeholder="Leave blank to keep the same"
+                    />
+                  </Form.Group>
+                  <Form.Group id="password-confirm">
+                    <Form.Label>Password Confirmation</Form.Label>
+                    <Form.Control
+                      type="password"
+                      ref={passwordConfirmRef}
+                      defaultValue={''}
+                      placeholder="Leave blank to keep the same"
+                    />
+                  </Form.Group>
 
-              {error && <Alert variant="danger">{error}</Alert>}
-              <Form onSubmit={handleSubmit}>
-                <Form.Group id="displayName">
-                  <Form.Label>Display Name</Form.Label>
-                  <Form.Control
-                    type="displayName"
-                    ref={displayNameRef}
-                    required
-                    defaultValue={currentUser.displayName}
-                  />
-                </Form.Group>
-                <Form.Group id="email">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    ref={emailRef}
-                    required
-                    defaultValue={currentUser.email}
-                  />
-                </Form.Group>
-                <Form.Group id="password">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    ref={passwordRef}
-                    placeholder="Leave blank to keep the same"
-                  />
-                </Form.Group>
-                <Form.Group id="password-confirm">
-                  <Form.Label>Password Confirmation</Form.Label>
-                  <Form.Control
-                    type="password"
-                    ref={passwordConfirmRef}
-                    placeholder="Leave blank to keep the same"
-                  />
-                </Form.Group>
-                <Button disabled={loading} type="submit">
-                  Update
-                </Button>
-              </Form>
+                  <Form.Group id="summary">
+                    <Form.Label>Summary</Form.Label>
+                    <Form.Control
+                      type="text"
+                      ref={summaryRef}
+                      defaultValue={currentFirestoreUser.summary}
+                    />
+                  </Form.Group>
 
-              <div>
-                <Link to="/">Cancel</Link>
+                  <div className="submit-container">
+                    <p><Link to="/profile" className="btn">Cancel</Link></p>
+                    <p><Button disabled={loading} type="submit" className="btn">Update Profile</Button></p>
+                  </div>
+                </Form>
               </div>
             </Col>
           </Row>
