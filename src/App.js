@@ -1,48 +1,43 @@
-// Core Imports
+// App.js
 import './App.css';
-import React, { useCallback } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-// Component Imports
 import Navigation from './components/navigation/Navigation';
-import navValues from './components/navigation/react-routing';
-import ComponentSelection from "./components/navigation/ComponentSelection";
-import Flag from './components/parts/Flag';
+import Home from './components/home/Home';
+import Project from './components/list/Project';
 import List from './components/list/List';
-
-// Bootstrap
+import Bootstrap from './components/bootstrap/Bootstrap';
+import Login from './components/user/Login';
+import SignUp from './components/user/SignUp';
+import { AuthProvider } from './providers/AuthContext';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 import Footer from './components/navigation/Footer';
-
-const REACT_VERSION = React.version;
-const navigationContext = React.createContext(navValues.home);
+import PageNotFound from './components/navigation/PageNotFound';
+import Dashboard from './components/user/Dashboard';
+import UpdateProfile from './components/user/UpdateProfile';
+import UserPanel from './components/user/UserPanel';
 
 function App() {
-
-  const navigate = useCallback(
-    (navTo, param) => setNav({ current: navTo, param, navigate }),
-    []
-  );
-  const [nav, setNav] = useState({current: navValues.home, navigate });
-  
   return (
-    <navigationContext.Provider value={ nav }>
-      <div className="App">
-        <Navigation navigate={navigate} />
-
-        <Container>
-          <ComponentSelection currentNavLocation={nav.current}/>
-          <Footer />
-        </Container>
-      </div>
-
-    </navigationContext.Provider>
+    <AuthProvider>
+      <Navigation />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<List />} />
+          <Route path="/projects/:id" element={<Project />} />
+          <Route path="/bootstrap" element={<Bootstrap />} />
+          <Route path="/login" element={<Login />} />
+          {/* <Route path="/signup" element={<SignUp />} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/update-profile" element={<UpdateProfile />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </Container>
+    </AuthProvider>
   );
 }
 
-export { navigationContext }
 export default App;

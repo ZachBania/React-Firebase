@@ -7,6 +7,8 @@ html, body {
   font-size: 16px;
   background: #efefef;
   line-height: 1.25em;
+
+  min-width: 350px;
 }
 
 p {
@@ -32,10 +34,18 @@ p {
   margin: 0 auto;
   padding: 0 .5em;
 
-  outline: rgba(0,0,0,.25) solid 1px;
+  
 
   * {
     padding: 0;
+  }
+}
+
+.col {
+  outline: rgba(0,0,0,.25) solid 1px;
+
+  @media(max-width: 575px) {
+    flex: 1 1 100%;
   }
 }
 
@@ -47,6 +57,7 @@ p {
   color:$color_primary_dark;
   font-weight: 800;
   padding: .25em 1em;
+  cursor: pointer;
 
   &:hover, &:active, &:focus {
     background: $color_primary;

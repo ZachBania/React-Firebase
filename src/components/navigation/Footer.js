@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 // Component Imports
 import { navigationContext } from './../../App'
 import List from '../list/List';
-import navValues from './react-routing';
+// import navValues from './react-routing';
 
 // Bootstrap Imports
 import Container from 'react-bootstrap/Container';
@@ -19,16 +19,16 @@ const Footer = (props) => (
     <footer>
 
         <Row>
-            <Col className={'col'} sm="true" md="true" lg="true" xl="true" xxl="true">
+            <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
             </Col>
-            <Col className={'col'} sm="true" md="true" lg="true" xl="true" xxl="true">
+            <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
             </Col>
         </Row>        
         <Row>
-            <Col className={'col'} sm="true" md="true" lg="6" xl="6" xxl="6">
+            <Col className={'col'} sm="12" md="12" lg="6" xl="6" xxl="6">
                 <p>React-Bootstrap</p>
             </Col>
-            <Col className={'col'} sm="true" md="true" lg="6" xl="6" xxl="6">
+            <Col className={'col'} sm="12" md="12" lg="6" xl="6" xxl="6">
                 
             </Col>
         </Row>

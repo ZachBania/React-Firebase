@@ -1,39 +1,81 @@
 // Core Imports
-import { useCallback } from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
+import logo from './logo512.png';
+import { useContex, useState } from 'react';
+import { useAuth } from '../../providers/AuthContext';
 
 // Component Imports
-import { navigationContext } from './../../App'
-import List from '../list/List';
-import navValues from './react-routing';
 
 // Bootstrap Imports
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const Navigation = (props) => (
-    
-    <Navbar expand="lg" className="bg-body-tertiary" >
+const Navigation = (props) => {
+    const { currentUser, logout } = useAuth();
+    const [error, setError] = useState("");
 
-        <Navbar.Brand href="#home">
-            <div className="brand-image-container">
-                <img alt="" src="./logo512.png" width="30" height="30" className="d-inline-block align-top"/>
-            </div>
-            <h1>React-Bootstrap</h1>
-        </Navbar.Brand>
+    async function handleLogout() {
+        setError("")
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-            <Nav.Link onClick={() => props.navigate(navValues.home)}>Home</Nav.Link>
-            <Nav.Link onClick={() => props.navigate(navValues.projects)}>Projects</Nav.Link>
-            <Nav.Link>Bootstrap Components</Nav.Link>
-            </Nav>
-        </Navbar.Collapse>
-    </Navbar>
-);
+        try {
+            await logout()
+            //   history.push("/login")
+        } catch {
+            setError("Failed to log out")
+        }
+    }
+
+    return (
+        <>
+            <Navbar expand="lg" className="bg-body-tertiary" >
+
+                <Navbar.Brand href="/">
+                    <div className="brand-image-container">
+                        <img src={logo} />
+                    </div>
+                    <h1>React-Bootstrap</h1>
+                </Navbar.Brand>
+
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <ul>
+                            {currentUser ? (<li><Link to="/dashboard">Dashboard</Link></li>) : ('')}
+                            <li><Link to="/projects">Projects</Link></li>
+                            <li><Link to="/bootstrap">Bootstrap Components</Link></li>
+                            {currentUser ? (
+                                <>
+                                    <li className='mobile'><Link onClick={handleLogout}>Logout</Link></li>
+                                </>
+                            ) : (
+                                <>
+                                    <li className='mobile'><Link to="/login">Login</Link></li>
+                                    {/* <li><Link to="/signup">SignUp</Link></li> */}
+                                </>
+                            )}                            
+                        </ul>
+                    </Nav>
+                </Navbar.Collapse>
+                <div id="auth-navbar-nav">
+                    <Nav className="me-auto">
+                        <ul>
+                            {currentUser ? (
+                                <>
+                                    <li><Link onClick={handleLogout}>Logout</Link></li>
+                                </>
+                            ) : (
+                                <>
+                                    <li><Link to="/login">Login</Link></li>
+                                    {/* <li><Link to="/signup">SignUp</Link></li> */}
+                                </>
+                            )}
+                        </ul>
+                    </Nav>
+                </div>
+            </Navbar>
+        </>
+    )
+}
+
 export default Navigation;
 

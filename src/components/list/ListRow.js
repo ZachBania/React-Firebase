@@ -1,31 +1,28 @@
 // Core Imports
 import React, { useContext } from "react";
-
-// Component Imports
-import { navigationContext } from "../../App";
-import navValues from "../navigation/react-routing";
-
-// Bootstrap Imports
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Table from 'react-bootstrap/Table';
+import { Link, Button, useLocation } from "react-router-dom";
+import BS_Badge from "../parts/BS_Badge";
+import Stack from 'react-bootstrap/Stack';
 
 const ListRow = ({project})=> {
-  const { navigate } = useContext(navigationContext);
-  return (
+  
 
-        <div className="project-container" onClick={() => navigate(navValues.project, project)}>
+  return (
+        <div className="project-container">
           <div className="project--inner-container">
-            {/* <p className="project-id">{project.id}</p> */}
-            <h2 className="project-name">{project.name}</h2>
-            <p className="project-description">{project.description}</p>
-            {/* <p className="project-meta">{project.meta}</p> */}
+            <div className="project-name-container">
+              <h2 className="project-name">{project.name}</h2>
+              <Stack direction="horizontal" gap={2}>
+                  <BS_Badge badgeStyle={ "primary bg-" + project.category_owner.toLowerCase() } text={project.category_owner} />
+              </Stack>
+            </div>
+            <p className="project-excerpt">{project.excerpt}</p>
+            
+            <Link to={`/projects/${project.id}`} className="btn">View Project</Link>
+          
           </div>
         </div>
   );
 }
 
-const ListRowMemo = React.memo(ListRow);
 export default ListRow;
-export { ListRowMemo }
