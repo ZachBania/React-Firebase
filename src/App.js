@@ -1,29 +1,26 @@
 // Core Imports
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { db } from './api/firebase';
+import { AuthProvider } from './providers/AuthContext';
 
 // Component Imports
+import Container from 'react-bootstrap/Container';
 import Navigation from './components/navigation/Navigation';
 import Home from './components/home/Home';
-import Project from './components/list/Project';
-import List from './components/list/List';
-import Bootstrap from './components/bootstrap/Bootstrap';
-import Login from './components/user/Login';
-import SignUp from './components/user/SignUp';
-import { AuthProvider } from './providers/AuthContext';
-import Container from 'react-bootstrap/Container';
 import Footer from './components/navigation/Footer';
-import PageNotFound from './components/navigation/PageNotFound';
+// Component Imports - Projects
+import List from './components/list/List';
+import Detail from './components/list/Detail';
+// Component Imports - Auth
+import Login from './components/user/Login';
 import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
-import UserPanel from './components/user/UserPanel';
+// Component Imports - Additional
+import PageNotFound from './components/navigation/PageNotFound';
 
-
-import { doc, getDoc } from "firebase/firestore";
-import { useAuth } from './providers/AuthContext';
-
+// Bootstrap Imports
+import Bootstrap from './components/bootstrap/Bootstrap';
 
 function App() {
 
@@ -34,7 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<List />} />
-          <Route path="/projects/:id" element={<Project />} />
+          <Route path="/projects/:id" element={<Detail />} />
           <Route path="/bootstrap" element={<Bootstrap />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/signup" element={<SignUp />} /> */}

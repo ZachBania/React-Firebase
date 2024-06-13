@@ -1,7 +1,7 @@
 // Core Imports
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import exData from "../../api/exData";
+import { useAuth } from "../../providers/AuthContext";
 
 // Component Imports
 import StaticHeader from '../parts/StaticHeader';
@@ -11,18 +11,17 @@ import PageNotFound from "../navigation/PageNotFound";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-function Project(props) {
+function Detail(props) {
     const { id } = useParams();
     const [project, setProject] = useState(null);
+    const { projects, setProjects, getProjects } = useAuth();  
 
-    // Fetch project details based on ID
     useEffect(() => {
-        // Assuming exData is available globally or imported
-        const selectedProject = exData.find(proj => proj.id === parseInt(id));
+        getProjects();  
+        const selectedProject = projects.find(proj => proj.id === parseInt(id));
         setProject(selectedProject);
     }, [id]);
 
-    // If project is still loading or not found, display appropriate message
     if (!project) {
         return <PageNotFound />;
     }
@@ -31,14 +30,14 @@ function Project(props) {
         <>
             <Row>
                 <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
-                    <StaticHeader headerText={project.name} />
+                    <StaticHeader headerText={ project.header ? project.header : '' } />
                 </Col>
             </Row>
 
             <Row>
                 <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                     <div className="project-detail-container">
-                        <p className="project-excerpt">{project.excerpt}</p>
+                        <p className="project-excerpt">{ project.excerpt ? project.excerpt : ''}</p>
                         <Link to="/projects" className="btn">Back to projects</Link>
                     </div>
                 </Col>
@@ -48,4 +47,4 @@ function Project(props) {
     );
 }
 
-export default Project;
+export default Detail;

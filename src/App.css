@@ -12184,7 +12184,6 @@ footer {
 }
 
 .project-detail-container {
-  outline: black solid 1px;
   max-width: 1050px;
   padding: 1em 0;
 }
@@ -12197,6 +12196,9 @@ footer {
   margin: 0 0 1em 0;
 }
 
+.profile-container {
+  padding: 1em 0;
+}
 @media (min-width: 768px) {
   .profile-container {
     padding: 1em 0 1em 2em;

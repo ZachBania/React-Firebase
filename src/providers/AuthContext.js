@@ -1,9 +1,7 @@
 // AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from '../api/firebase';
-import { getDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "../api/firebase";
-
+import { auth, db } from '../api/firebase';
+import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
 
 const AuthContext = createContext(null);
 
@@ -11,9 +9,10 @@ export function useAuth() {
     return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }) { // Corrected children typo
-    const [currentUser, setCurrentUser] = useState(); 
+export function AuthProvider({ children }) {
+    const [currentUser, setCurrentUser] = useState();
     const [currentFirestoreUser, setCurrentFirestoreUser] = useState({});
+    const [projects, setProjects] = useState([]);
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
@@ -44,20 +43,29 @@ export function AuthProvider({ children }) { // Corrected children typo
     function updatePassword(password) {
         return currentUser.updatePassword(password)
     }
+
     async function updateSummary(summary) {
         const userDocRef = doc(db, "Users", currentUser.uid);
-        
+
         if (summary !== undefined) {
-          await updateDoc(userDocRef, {
-            summary: summary !== null ? summary : ""
-          });
-          
-          setCurrentFirestoreUser(prevUser => ({
-            ...prevUser,
-            summary: summary !== null ? summary : ""
-          }));
+            await updateDoc(userDocRef, {
+                summary: summary !== null ? summary : ""
+            });
+
+            setCurrentFirestoreUser(prevUser => ({
+                ...prevUser,
+                summary: summary !== null ? summary : ""
+            }));
         }
-      }
+    }
+
+    async function getProjects() {
+        const q = query(collection(db, "Projects"), orderBy('id', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const projectsList = querySnapshot.docs.map(doc => doc.data());
+        setProjects(projectsList);
+    }
+
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -90,8 +98,11 @@ export function AuthProvider({ children }) { // Corrected children typo
         updateEmail,
         updatePassword,
         updateProfile,
-        updateSummary
-      }
+        updateSummary,
+        projects, 
+        setProjects, 
+        getProjects,
+    }
 
     return (
         <AuthContext.Provider value={value}>

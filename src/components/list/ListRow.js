@@ -15,7 +15,7 @@ const ListRow = ({project})=> {
         <div className="project-container">
           <div className="project--inner-container">
             <div className="project-name-container">
-              <h2 className="project-name">{project.name}</h2>
+              <h2 className="project-name">{project.header}</h2>
               <Stack direction="horizontal" gap={2}>
                   <BS_Badge badgeStyle={ "primary bg-" + project.category_owner.toLowerCase() } text={project.category_owner} />
               </Stack>
