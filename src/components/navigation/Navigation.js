@@ -41,10 +41,10 @@ const Navigation = (props) => {
                     <Nav className="me-auto">
                         <ul>
                             <li><Link to="/projects">Projects</Link></li>
-                            <li><Link to="/bootstrap">Bootstrap Components</Link></li>
                             {currentUser ? (
                                 <>
                                     <li className='mobile'><Link to="/profile">Profile</Link></li>
+                                    <li className='mobile'><Link to="/dashboard">Dashboard</Link></li>
                                     <li className='mobile'><Link onClick={handleLogout}>Logout</Link></li>
                                 </>
                             ) : (
@@ -62,6 +62,7 @@ const Navigation = (props) => {
                             {currentUser ? (
                                 <>
                                     <li><Link to="/profile">Profile</Link></li>
+                                    <li><Link to="/dashboard">Dashboard</Link></li>
                                     <li><Link onClick={handleLogout}>Logout</Link></li>
                                 </>
                             ) : (

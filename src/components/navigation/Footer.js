@@ -5,6 +5,7 @@
 // Bootstrap Imports
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 
 const Footer = (props) => (
     
@@ -18,7 +19,7 @@ const Footer = (props) => (
         </Row>        
         <Row>
             <Col className={'col'} sm="12" md="12" lg="6" xl="6" xxl="6">
-                <p>React-Bootstrap</p>
+                <p><Link to="https://github.com/ZachBania/react-fundementals">GitHub</Link></p>
             </Col>
             <Col className={'col'} sm="12" md="12" lg="6" xl="6" xxl="6">
                 

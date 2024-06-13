@@ -12,6 +12,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [currentFirestoreUser, setCurrentFirestoreUser] = useState({});
+    const [users, setUsers] = useState([]);
     const [projects, setProjects] = useState([]);
 
     function signup(email, password) {
@@ -66,6 +67,13 @@ export function AuthProvider({ children }) {
         setProjects(projectsList);
     }
 
+    async function getUsers() {
+        const q = query(collection(db, "Users"), orderBy('role', 'asc'));
+        const querySnapshot = await getDocs(q);
+        const usersList = querySnapshot.docs.map(doc => doc.data());
+        setUsers(usersList);
+        console.log(usersList)
+    }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -86,11 +94,11 @@ export function AuthProvider({ children }) {
         return unsubscribe;
     }, []);
 
-
-
     const value = {
         currentUser,
         currentFirestoreUser,
+        users,
+        getUsers,
         login,
         signup,
         logout,
@@ -99,8 +107,8 @@ export function AuthProvider({ children }) {
         updatePassword,
         updateProfile,
         updateSummary,
-        projects, 
-        setProjects, 
+        projects,
+        setProjects,
         getProjects,
     }
 

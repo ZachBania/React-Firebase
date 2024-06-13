@@ -3,7 +3,7 @@ import React from 'react';
 
 // Component Imports
 import DefaultHeader from '../parts/DefaultHeader';
-import UserPanel from '../user/UserPanel';
+import UserPanel from '../parts/UserPanel';
 
 // Bootstrap Imports
 import Row from 'react-bootstrap/Row';

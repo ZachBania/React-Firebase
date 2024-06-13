@@ -12068,6 +12068,18 @@ footer {
   margin: 0;
   color: #FFF;
 }
+footer .row .col a:link,
+footer .row .col a:visited {
+  color: #FFF;
+  text-decoration: none;
+  transition: 0.25s;
+}
+footer .row .col a:hover,
+footer .row .col a:active,
+footer .row .col a:focus {
+  color: #5fdbf8;
+}
+
 .default-header-component {
   display: flex;
   align-items: center;
@@ -12132,6 +12144,17 @@ footer {
 }
 .home-container .row .col p {
   margin: 0 0 1em 0;
+}
+
+.dashboard-container h2, .dashboard-container .h2 {
+  font-size: 1.5em;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+@media (min-width: 768px) {
+  .dashboard-container {
+    padding: 1em 0 1em 2em;
+  }
 }
 
 .projects-container {

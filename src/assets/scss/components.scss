@@ -139,6 +139,18 @@ footer {
 
         .col {
 
+            a:link,
+            a:visited {
+                color: $color_primary_light;
+                text-decoration: none;
+                transition: .25s;
+            }
+
+            a:hover,
+            a:active,
+            a:focus {
+                color: $color_primary;
+            }
 
         }
     }
@@ -209,6 +221,19 @@ footer {
         }
     }
 
+}
+
+.dashboard-container {
+
+    h2 {
+        font-size: 1.5em;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    @media(min-width:768px) {
+        padding:1em 0 1em 2em ;
+    }
 }
 
 .projects-container {

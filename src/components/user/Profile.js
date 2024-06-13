@@ -1,14 +1,14 @@
 // Core Imports
-import React, { useState, useEffect } from "react"
-import { useAuth } from "../../providers/AuthContext"
-import { Link, useHistory } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useAuth } from "../../providers/AuthContext";
+import { Link, useHistory } from "react-router-dom";
 
 // Component Imports
-import StaticHeader from "../parts/StaticHeader"
-import UsersPanel from "./UsersPanel"
+import StaticHeader from "../parts/StaticHeader";
+import UsersPanel from "../parts/UsersPanel";
 
 // Bootstrap Imports
-import { Row, Col, Alert } from "react-bootstrap"
+import { Row, Col, Alert } from "react-bootstrap";
 
 export default function Profile() {
     const [error, setError] = useState("")
@@ -51,12 +51,6 @@ export default function Profile() {
 
                             </div>
 
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
-                            <UsersPanel />
                         </Col>
                     </Row>
                 </>
