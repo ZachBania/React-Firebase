@@ -16,4 +16,4 @@ The page will reload when you make changes.
 
 ## Built with Firebase and Firestore
 
-This project implements [Firebase](https://firebase.google.com/docs/auth) Auth to manage authentication of users, and [Firestore](https://firebase.google.com/docs/firestore/quickstart) to manage all additional data.
+This project implements [Firebase Auth](https://firebase.google.com/docs/auth) to manage authentication of users, and [Firestore](https://firebase.google.com/docs/firestore/quickstart) to manage all additional data.
