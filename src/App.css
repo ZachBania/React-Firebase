@@ -11996,6 +11996,59 @@ table tbody tr td {
   outline: rgba(0, 0, 0, 0.25) solid 1px;
 }
 
+.alert {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  right: unset;
+  bottom: unset;
+  width: calc(100% - 1em);
+  opacity: 0.75;
+  border-color: #000;
+}
+.alert.alert-primary {
+  background: #032830;
+  color: #5fdbf8;
+  border-color: #5fdbf8;
+}
+.alert.alert-info {
+  background: #FFF;
+  color: #000;
+}
+.alert.alert-light {
+  background: #FFF;
+  color: #000;
+}
+.alert.alert-dark {
+  background: #000;
+  color: #FFF;
+}
+.alert .btn-close {
+  display: none;
+  position: relative;
+  top: unset;
+  bottom: unset;
+  right: unset;
+  left: unset;
+  padding: 0;
+}
+
+.hstack .badge {
+  padding: 0.25em 0.75em;
+  border-radius: 3px;
+}
+.hstack .badge.bg-light {
+  color: #000;
+}
+.hstack .badge.bg-freelance {
+  background: #5fdbf8 !important;
+  color: #000;
+}
+.hstack .badge.bg-agency {
+  background: #000 !important;
+  color: #FFF;
+}
+
 nav.navbar {
   background: #000 !important;
   background-color: #000 !important;
@@ -12005,6 +12058,7 @@ nav.navbar .navbar-brand {
   display: flex;
   align-items: center;
   text-decoration: none;
+  padding: 0 0 0 0.5em;
 }
 nav.navbar .navbar-brand .brand-image-container {
   flex: 1 1 auto;
@@ -12191,7 +12245,7 @@ footer .row .col a:focus {
 }
 @media (min-width: 768px) {
   .dashboard-container {
-    padding: 1em 2em;
+    padding: 1em 1em 1em 2em;
   }
 }
 .dashboard-container h2, .dashboard-container .h2 {
@@ -12199,7 +12253,22 @@ footer .row .col a:focus {
   padding: 0 !important;
   margin: 0 !important;
 }
-
+.dashboard-container .nav.nav-tabs li button {
+  color: #000;
+  background: transparent;
+  font-weight: 600;
+  border-radius: unset;
+  padding: 0.5em 1em;
+  border: unset;
+  outline: black solid 1px;
+}
+.dashboard-container .nav.nav-tabs li button.active {
+  background: #5fdbf8;
+}
+.dashboard-container .tab-content {
+  background: transparent;
+  padding: 2em 0 0 0;
+}
 .projects-container {
   display: flex;
   flex-wrap: wrap;
@@ -12283,14 +12352,8 @@ footer .row .col a:focus {
 .projects-panel-container {
   padding: 1em 0;
 }
-
 .profile-container {
-  padding: 1em 0;
-}
-@media (min-width: 768px) {
-  .profile-container {
-    padding: 1em 0 1em 2em;
-  }
+  padding: 1em 0 0 0;
 }
 .profile-container .btn {
   margin: 1em 0 0 0;
@@ -12336,59 +12399,6 @@ footer .row .col a:focus {
 
 .users-panel-container {
   padding: 1em 0;
-}
-
-.alert {
-  position: absolute;
-  top: 0.5em;
-  left: 0.5em;
-  right: unset;
-  bottom: unset;
-  width: calc(100% - 1em);
-  opacity: 0.75;
-  border-color: #000;
-}
-.alert.alert-primary {
-  background: #032830;
-  color: #5fdbf8;
-  border-color: #5fdbf8;
-}
-.alert.alert-info {
-  background: #FFF;
-  color: #000;
-}
-.alert.alert-light {
-  background: #FFF;
-  color: #000;
-}
-.alert.alert-dark {
-  background: #000;
-  color: #FFF;
-}
-.alert .btn-close {
-  display: none;
-  position: relative;
-  top: unset;
-  bottom: unset;
-  right: unset;
-  left: unset;
-  padding: 0;
-}
-
-.hstack .badge {
-  padding: 0.25em 0.75em;
-  border-radius: 3px;
-}
-.hstack .badge.bg-light {
-  color: #000;
-}
-.hstack .badge.bg-freelance {
-  background: #5fdbf8 !important;
-  color: #000;
-}
-.hstack .badge.bg-agency {
-  background: #000 !important;
-  color: #FFF;
 }
 
 /*# sourceMappingURL=App.css.map */

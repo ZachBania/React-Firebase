@@ -51,6 +51,83 @@ table {
     }
 }
 
+.alert {
+
+    position: absolute;
+    top: .5em;
+    left: .5em;
+    right: unset;
+    bottom: unset;
+    width: calc(100% - 1em);
+    // max-width: 1400px;
+
+    opacity: .75;
+    
+    border-color: $color_primary_dark;
+
+    &.alert-primary {
+        background: #032830;
+        color: $color_primary;
+        border-color: $color_primary;
+    }
+    &.alert-secondary {
+
+    }
+    &.alert-success {
+
+    }
+    &.alert-danger {
+
+    }
+    &.alert-warning {
+
+    }
+    &.alert-info {
+        background: $color_primary_light;
+        color: $color_primary_dark;
+    }
+    &.alert-light {
+        background: $color_primary_light;
+        color: $color_primary_dark;
+    }
+    &.alert-dark {
+        background: $color_primary_dark;
+        color: $color_primary_light;
+    }
+
+    .btn-close {
+        display: none;
+        position: relative;
+        top: unset;
+        bottom: unset;
+        right: unset;
+        left: unset;
+        padding: 0;
+    }
+}
+
+.hstack {
+
+    .badge {
+        padding: .25em .75em;
+        border-radius: 3px;
+
+        &.bg-light {
+            color: $color_primary_dark;
+        }
+
+        &.bg-freelance {
+            background: $color_primary !important;
+            color: $color_primary_dark;
+        }
+
+        &.bg-agency {
+            background: $color_primary_dark !important;
+            color: $color_primary_light;
+        }
+    }
+}
+
 nav.navbar {
     background: $color_primary_dark !important;
     background-color: $color_primary_dark !important;
@@ -61,6 +138,7 @@ nav.navbar {
         display: flex;
         align-items: center;
         text-decoration: none;
+        padding: 0 0 0 .5em;
 
         .brand-image-container {
             flex: 1 1 auto;
@@ -276,15 +354,44 @@ footer {
 
 .dashboard-container {
     padding: 1em;
-    
-    @media(min-width:768px) {
-        padding: 1em 2em;
-    }
 
+    @media(min-width:768px) {
+        padding: 1em 1em 1em 2em;
+    }
+    
     h2 {
         font-size: 1.5em;
         padding: 0 !important;
         margin: 0 !important;
+    }
+
+    .nav.nav-tabs  {
+
+        li {
+
+            button {
+                color: $color_primary_dark;
+                background: transparent;
+                font-weight: 600;
+                border-radius: unset;
+                padding: .5em 1em;
+                border: unset;
+                outline: black solid 1px;
+
+                &.active {
+                    background: $color_primary;
+                }
+            }
+        }
+    }
+
+    .tab-content {
+        background: transparent;
+        padding: 2em 0 0 0;
+
+        .tab-pane {
+
+        }
     }
 }
 
@@ -388,14 +495,23 @@ footer {
 
 .projects-panel-container {
     padding: 1em 0;
+
+    table {
+        tr {
+            th {
+
+            }
+        }
+        tr {
+            td {
+                
+            }
+        }
+    }
 }
 
 .profile-container {
-    padding: 1em 0;
-
-    @media(min-width: 768px) {
-        padding: 1em 0 1em 2em;
-    }
+    padding: 1em 0 0 0;
 
     .btn {
         margin: 1em 0 0 0;
@@ -443,82 +559,4 @@ footer {
 
 .users-panel-container {
     padding: 1em 0;
-}
-
-
-.alert {
-
-    position: absolute;
-    top: .5em;
-    left: .5em;
-    right: unset;
-    bottom: unset;
-    width: calc(100% - 1em);
-    // max-width: 1400px;
-
-    opacity: .75;
-    
-    border-color: $color_primary_dark;
-
-    &.alert-primary {
-        background: #032830;
-        color: $color_primary;
-        border-color: $color_primary;
-    }
-    &.alert-secondary {
-
-    }
-    &.alert-success {
-
-    }
-    &.alert-danger {
-
-    }
-    &.alert-warning {
-
-    }
-    &.alert-info {
-        background: $color_primary_light;
-        color: $color_primary_dark;
-    }
-    &.alert-light {
-        background: $color_primary_light;
-        color: $color_primary_dark;
-    }
-    &.alert-dark {
-        background: $color_primary_dark;
-        color: $color_primary_light;
-    }
-
-    .btn-close {
-        display: none;
-        position: relative;
-        top: unset;
-        bottom: unset;
-        right: unset;
-        left: unset;
-        padding: 0;
-    }
-}
-
-.hstack {
-
-    .badge {
-        padding: .25em .75em;
-        border-radius: 3px;
-
-        &.bg-light {
-            color: $color_primary_dark;
-        }
-
-        &.bg-freelance {
-            background: $color_primary !important;
-            color: $color_primary_dark;
-        }
-
-        &.bg-agency {
-            background: $color_primary_dark !important;
-            color: $color_primary_light;
-        }
-    }
 }

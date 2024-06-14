@@ -14,7 +14,6 @@ import List from './components/list/List';
 import Detail from './components/list/Detail';
 // Component Imports - Auth
 import Dashboard from './components/user/Dashboard';
-import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
 import Login from './components/user/Login';
 // Component Imports - Additional
@@ -35,7 +34,6 @@ function App() {
           <Route path="/projects/:id" element={<Detail />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/signup" element={<SignUp />} /> */}
-          <Route path="/profile" element={<Profile />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/update-profile" element={<UpdateProfile />} />
           <Route path="*" element={<PageNotFound />} />

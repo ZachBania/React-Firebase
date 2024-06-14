@@ -75,6 +75,10 @@ export function AuthProvider({ children }) {
         setProject(p);
     }
 
+    async function deleteProject(project_id) {
+        console.log(project_id);
+    }
+
     async function getUsers() {
         const q = query(collection(db, "Users"), orderBy('role', 'asc'));
         const querySnapshot = await getDocs(q);
@@ -118,6 +122,7 @@ export function AuthProvider({ children }) {
         project,
         setProject,
         addProject,
+        deleteProject,
         projects,
         setProjects,
         getProjects,

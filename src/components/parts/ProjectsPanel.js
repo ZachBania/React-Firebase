@@ -6,18 +6,18 @@ import { useAuth } from "../../providers/AuthContext";
 import BS_Badge from "./BS_Badge";
 
 // Bootstrap Imports
-import { Stack, Table } from "react-bootstrap";
+import { Stack, Table, Button } from "react-bootstrap";
 
 const ProjectsPanel = () => {
     const { currentUser } = useAuth();
-    const { projects, setProjects, getProjects } = useAuth();
+    const { projects, setProjects, getProjects, deleteProject } = useAuth();
 
     useEffect(() => {
         getProjects();
     }, []);
 
-    function handleProjectSubmit(e) {
-
+    function handleDeleteProject(project_id) {
+        deleteProject(project_id);
     }
 
     return (
