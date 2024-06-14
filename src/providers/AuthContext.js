@@ -1,7 +1,8 @@
 // AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from '../api/firebase';
-import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { v4 as uuidv4 } from 'uuid';
 
 const AuthContext = createContext(null);
 
@@ -14,6 +15,7 @@ export function AuthProvider({ children }) {
     const [currentFirestoreUser, setCurrentFirestoreUser] = useState({});
     const [users, setUsers] = useState([]);
     const [projects, setProjects] = useState([]);
+    const [project, setProject] = useState({});
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
@@ -67,12 +69,17 @@ export function AuthProvider({ children }) {
         setProjects(projectsList);
     }
 
+    async function addProject(p) {
+        const projectId = uuidv4();
+        await setDoc(doc(db, "Projects", projectId), p);
+        setProject(p);
+    }
+
     async function getUsers() {
         const q = query(collection(db, "Users"), orderBy('role', 'asc'));
         const querySnapshot = await getDocs(q);
         const usersList = querySnapshot.docs.map(doc => doc.data());
         setUsers(usersList);
-        console.log(usersList)
     }
 
     useEffect(() => {
@@ -107,6 +114,10 @@ export function AuthProvider({ children }) {
         updatePassword,
         updateProfile,
         updateSummary,
+        // Projects
+        project,
+        setProject,
+        addProject,
         projects,
         setProjects,
         getProjects,

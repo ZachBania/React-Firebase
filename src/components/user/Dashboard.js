@@ -7,6 +7,7 @@ import { useAuth } from "../../providers/AuthContext";
 import StaticHeader from "../parts/StaticHeader";
 import UsersPanel from "../parts/UsersPanel";
 import ProjectsPanel from "../parts/ProjectsPanel";
+import AddProject from "../parts/AddProject";
 
 // Bootstrap Imports
 import { Row, Col } from "react-bootstrap";
@@ -32,6 +33,9 @@ export default function Dashboard() {
 
                                 <h2>All Projects</h2>
                                 <ProjectsPanel />
+
+                                <h2>Add Project</h2>
+                                <AddProject  />                        
                             </div>
                         </Col>
                     </Row>

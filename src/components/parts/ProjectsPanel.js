@@ -9,16 +9,21 @@ import BS_Badge from "./BS_Badge";
 import { Stack, Table } from "react-bootstrap";
 
 const ProjectsPanel = () => {
-    const { currentUser, projects, setProjects, getProjects } = useAuth();
+    const { currentUser } = useAuth();
+    const { projects, setProjects, getProjects } = useAuth();
 
     useEffect(() => {
         getProjects();
     }, []);
 
+    function handleProjectSubmit(e) {
+
+    }
+
     return (
         <>
             {currentUser ? (
-                <div className="users-panel-container">
+                <div className="projects-panel-container">
                     <Table>
                         <thead>
                             <tr>
@@ -34,7 +39,7 @@ const ProjectsPanel = () => {
                                 {projects.length > 0 ? (
                                     projects.map((project, id) => (
                                         <tr key={project.id}>
-                                            <td className="uid"><p>{project.id}</p></td>
+                                            <td className="id"><p>{project.id}</p></td>
                                             <td className="header"><p>{project.header}</p></td>
                                             <td className="description"><p>{project.description}</p></td>
                                             <td className="meta"><p>{project.meta}</p></td>
