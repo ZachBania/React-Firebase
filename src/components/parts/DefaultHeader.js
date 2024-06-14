@@ -18,7 +18,7 @@ function DefaultHeader(props) {
         return (
             <Row>
                 <Col className={'default-header-component col'} sm="true" md="true" lg="true" xl="true" xxl="true">
-                <h1>{props.headerText} - React ({REACT_VERSION})</h1>
+                <h1>{props.headerText} ({REACT_VERSION})</h1>
                 </Col>
             </Row>
         );
