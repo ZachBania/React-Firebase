@@ -11,16 +11,28 @@ import PageNotFound from "../navigation/PageNotFound";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
 function Detail(props) {
     const { id } = useParams();
     const [project, setProject] = useState(null);
-    const { projects, setProjects, getProjects } = useAuth();  
+    const { projects, getProjects } = useAuth();  
 
     useEffect(() => {
-        getProjects();  
-        const selectedProject = projects.find(proj => proj.id === parseInt(id));
-        setProject(selectedProject);
-    }, [id]);
+        async function fetchData() {
+            if (projects.length === 0) {
+                await getProjects();
+            }
+        }
+
+        fetchData();
+    }, [getProjects, projects.length]);
+
+    useEffect(() => {
+        if (projects.length > 0) {
+            const selectedProject = projects.find(proj => proj.id === parseInt(id));
+            setProject(selectedProject);
+        }
+    }, [projects, id]);
 
     if (!project) {
         return <PageNotFound />;

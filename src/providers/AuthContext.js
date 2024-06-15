@@ -1,7 +1,7 @@
 // AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from '../api/firebase';
-import { doc, getDoc, setDoc, updateDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc, deleteDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { v4 as uuidv4 } from 'uuid';
 
 const AuthContext = createContext(null);
@@ -65,18 +65,41 @@ export function AuthProvider({ children }) {
     async function getProjects() {
         const q = query(collection(db, "Projects"), orderBy('id', 'desc'));
         const querySnapshot = await getDocs(q);
-        const projectsList = querySnapshot.docs.map(doc => doc.data());
+        const projectsList = querySnapshot.docs.map(doc => ({ ...doc.data(), docId: doc.id }));
         setProjects(projectsList);
     }
 
-    async function addProject(p) {
+    async function addProject(project) {
         const projectId = uuidv4();
-        await setDoc(doc(db, "Projects", projectId), p);
-        setProject(p);
+        await setDoc(doc(db, "Projects", projectId), project);
+        setProject(project);
     }
 
-    async function deleteProject(project_id) {
-        console.log(project_id);
+    async function updateProject(updatedProject) {
+        // Find the document ID by the custom 'id' field
+        const q = query(collection(db, "Projects"), where("id", "==", updatedProject.id));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const docRef = querySnapshot.docs[0].ref;
+            await updateDoc(docRef, updatedProject);
+        } else {
+            console.error(`Project with id ${updatedProject.id} not found.`);
+        }
+    }
+
+    async function deleteProject(projectId) {
+        // Find the document ID by the custom 'id' field
+        const q = query(collection(db, "Projects"), where("id", "==", projectId));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const docRef = querySnapshot.docs[0].ref;
+            await deleteDoc(docRef);
+            setProjects(prevProjects => prevProjects.filter(project => project.id !== projectId));
+        } else {
+            console.error(`Project with id ${projectId} not found.`);
+        }
     }
 
     async function getUsers() {
@@ -122,6 +145,7 @@ export function AuthProvider({ children }) {
         project,
         setProject,
         addProject,
+        updateProject,
         deleteProject,
         projects,
         setProjects,

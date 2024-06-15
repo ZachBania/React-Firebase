@@ -12,6 +12,7 @@ import Footer from './components/navigation/Footer';
 // Component Imports - Projects
 import List from './components/list/List';
 import Detail from './components/list/Detail';
+import UpdateProject from './components/parts/UpdateProject';
 // Component Imports - Auth
 import Dashboard from './components/user/Dashboard';
 import UpdateProfile from './components/user/UpdateProfile';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<List />} />
           <Route path="/projects/:id" element={<Detail />} />
+          <Route path="/update-project/:id" element={<UpdateProject />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/signup" element={<SignUp />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />

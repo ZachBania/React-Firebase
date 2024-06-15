@@ -112,6 +112,11 @@ table {
         padding: .25em .75em;
         border-radius: 3px;
 
+        &.bg-primary {
+            background: $color_primary_dark !important;
+            color: $color_primary_light;
+        }
+
         &.bg-light {
             color: $color_primary_dark;
         }
@@ -125,6 +130,29 @@ table {
             background: $color_primary_dark !important;
             color: $color_primary_light;
         }
+    }
+}
+
+.accordion {
+    margin: 0 0 1em 0;
+
+    .accordion-item {
+        background: transparent;
+
+        .accordion-header {
+            .accordion-button {
+                background: transparent;
+                color: $color_primary_dark;
+                padding: 1em !important;
+                outline: rgba(0,0,0, .25) solid 1px;
+
+            }
+        }
+
+        .accordion-body {
+
+        }
+        
     }
 }
 
@@ -497,13 +525,63 @@ footer {
     padding: 1em 0;
 
     table {
-        tr {
-            th {
-
+        thead {
+            tr {
+                th {
+    
+                }
             }
         }
-        tr {
-            td {
+        tbody {
+            tr {
+                &:hover,
+                &:active,
+                &:focus {
+                    // outline: $color_primary solid 5px !important;
+                    cursor: pointer;
+                }
+                td {
+                }
+            }
+        }
+    }
+}
+
+.update-project-container {
+    padding: 1em;
+
+    @media(min-width:768px) {
+        padding: 1em 1em 1em 2em;
+    }
+
+    form {
+        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1em;
+
+        div {
+            flex: 1 1 100%;
+            @media(min-width: 768px) {
+                flex: 1 1 calc(50% - 1em);
+            }
+
+            &.submit-container {
+                flex-wrap: wrap;
+
+                p {
+                    flex: 1 1 100%;
+
+                    @media(max-width: 767px) {
+                        .btn {
+                            width: 100%;
+                            text-align: left;
+                        }
+                    }
+                    @media(min-width: 768px) {
+                        flex: 0 0 auto;
+                    }
+                }
                 
             }
         }

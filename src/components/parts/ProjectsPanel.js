@@ -1,9 +1,11 @@
 // Core Imports
 import { useEffect } from "react";
 import { useAuth } from "../../providers/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 // Component Imports
 import BS_Badge from "./BS_Badge";
+import UpdateProject from "./UpdateProject";
 
 // Bootstrap Imports
 import { Stack, Table, Button } from "react-bootstrap";
@@ -11,13 +13,15 @@ import { Stack, Table, Button } from "react-bootstrap";
 const ProjectsPanel = () => {
     const { currentUser } = useAuth();
     const { projects, setProjects, getProjects, deleteProject } = useAuth();
+    let navigate = useNavigate();
 
     useEffect(() => {
         getProjects();
     }, []);
 
-    function handleDeleteProject(project_id) {
-        deleteProject(project_id);
+    function updateProjectRoute(project_id) {
+        const path = `/update-project/${project_id}`;
+        navigate(path);
     }
 
     return (
@@ -38,7 +42,7 @@ const ProjectsPanel = () => {
                             <>
                                 {projects.length > 0 ? (
                                     projects.map((project, id) => (
-                                        <tr key={project.id}>
+                                        <tr key={project.id} onClick={() => updateProjectRoute(project.id)}>
                                             <td className="id"><p>{project.id}</p></td>
                                             <td className="header"><p>{project.header}</p></td>
                                             <td className="description"><p>{project.description}</p></td>

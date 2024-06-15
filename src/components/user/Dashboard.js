@@ -11,7 +11,7 @@ import AddProject from "../parts/AddProject";
 import Profile from "./Profile";
 
 // Bootstrap Imports
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Accordion } from "react-bootstrap";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -38,12 +38,19 @@ export default function Dashboard() {
                                         <Profile />
                                     </Tab>
                                     <Tab eventKey="project" title="All Projects">
-                                        <h2>All Projects</h2>
-                                        <ProjectsPanel />
 
-                                        <h2>Add Project</h2>
-                                        <AddProject />
-                                    </Tab>                                    
+                                        <Accordion>
+                                            <Accordion.Item eventKey="0">
+                                                <Accordion.Header>Add Project</Accordion.Header>
+                                                <Accordion.Body>
+                                                    <AddProject />
+                                                </Accordion.Body>
+                                            </Accordion.Item>
+                                        </Accordion>
+
+                                        <h2>All Projects</h2>
+                                        <ProjectsPanel />                                        
+                                    </Tab>
                                     <Tab eventKey="user" title="All Users">
                                         <h2>All Users</h2>
                                         <UsersPanel />
