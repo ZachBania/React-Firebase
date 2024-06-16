@@ -39,7 +39,7 @@ export default function Dashboard() {
                     {projectSubmitState?.status && projectSubmitState?.action && projectSubmitState?.project && (
                         <Flag text={`${projectSubmitState.project} has been successfully ${projectSubmitState.action}.`} flagStyle="primary" />
                     )}
-                    {/* {<Flag text={`test`} flagStyle="primary" />} */}
+                    
                     <Row>
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                             <StaticHeader headerText={"Dashboard"} />
@@ -50,11 +50,7 @@ export default function Dashboard() {
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                             <div className="dashboard-container">
 
-                                <Tabs
-                                    activeKey={activeKey}
-                                    onSelect={handleTabChange}
-                                    id="dashboard-tabs"
-                                >
+                                <Tabs activeKey={activeKey} onSelect={handleTabChange} id="dashboard-tabs">
                                     <Tab eventKey="profile" title="Profile">
                                         <h2>Profile</h2>
                                         <Profile />

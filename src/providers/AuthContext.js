@@ -101,6 +101,7 @@ export function AuthProvider({ children }) {
         if (!querySnapshot.empty) {
             const docRef = querySnapshot.docs[0].ref;
             await updateDoc(docRef, updatedProject);
+            setProjectSubmitState({ status: true, action: "updated", project: project.header });
         } else {
             console.error(`Project with id ${updatedProject.id} not found.`);
         }
@@ -114,6 +115,7 @@ export function AuthProvider({ children }) {
             const docRef = querySnapshot.docs[0].ref;
             await deleteDoc(docRef);
             setProjects(prevProjects => prevProjects.filter(project => project.id !== projectId));
+            setProjectSubmitState({ status: true, action: "deleted", project: project.header });
         } else {
             console.error(`Project with id ${projectId} not found.`);
         }
