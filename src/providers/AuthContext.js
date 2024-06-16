@@ -18,6 +18,8 @@ export function AuthProvider({ children }) {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
     const [projectSubmitState, setProjectSubmitState] = useState({ status: false, action: false, project: false });
+    
+
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
@@ -89,7 +91,7 @@ export function AuthProvider({ children }) {
         await setDoc(doc(db, "Projects", projectId), project);
         setProject(project);
         setProjects(prevProjects => [project, ...prevProjects]);
-        setProjectSubmitState({ status: true, action: "added", project: project.project });
+        setProjectSubmitState({ status: true, action: "added", project: project.header });
     }
 
     async function updateProject(updatedProject) {
@@ -99,8 +101,6 @@ export function AuthProvider({ children }) {
         if (!querySnapshot.empty) {
             const docRef = querySnapshot.docs[0].ref;
             await updateDoc(docRef, updatedProject);
-
-            setProjectSubmitState({ status: true, action: "updated", project: project.project });
         } else {
             console.error(`Project with id ${updatedProject.id} not found.`);
         }

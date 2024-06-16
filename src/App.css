@@ -11996,40 +11996,49 @@ table tbody tr td {
   outline: rgba(0, 0, 0, 0.25) solid 1px;
 }
 
-.alert {
+.alert-container {
   position: absolute;
   top: 0.5em;
-  left: 0.5em;
+  left: 50%;
   right: unset;
   bottom: unset;
+  transform: translateX(-50%);
   width: calc(100% - 1em);
-  opacity: 0.75;
+  max-width: calc(1400px - 2em);
+}
+.alert-container .alert {
+  position: relative;
+  padding: 0.5em 1em;
+  border-width: 3px;
   border-color: #000;
 }
-.alert.alert-primary {
-  background: #032830;
+.alert-container .alert.alert-primary {
+  background: rgba(0, 0, 0, 0.85);
   color: #5fdbf8;
   border-color: #5fdbf8;
 }
-.alert.alert-info {
+.alert-container .alert.alert-info {
   background: #FFF;
   color: #000;
 }
-.alert.alert-light {
+.alert-container .alert.alert-light {
   background: #FFF;
   color: #000;
 }
-.alert.alert-dark {
+.alert-container .alert.alert-dark {
   background: #000;
   color: #FFF;
 }
-.alert .btn-close {
+.alert-container .alert .btn-close {
   display: none;
-  position: relative;
-  top: unset;
-  bottom: unset;
-  right: unset;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
   left: unset;
+  bottom: unset;
+  border-radius: unset;
+  width: 2em;
+  height: calc(100% - 1em);
   padding: 0;
 }
 

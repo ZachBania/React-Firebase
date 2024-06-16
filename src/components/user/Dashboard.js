@@ -18,9 +18,9 @@ import Tabs from 'react-bootstrap/Tabs';
 
 export default function Dashboard() {
     const { currentUser, currentFirestoreUser, projectSubmitState, resetProjectSubmitState } = useAuth();
-    const { eventKey } = useParams(); // Retrieve eventKey from URL
-    const navigate = useNavigate(); // Hook to navigate programmatically
-    const [activeKey, setActiveKey] = useState(eventKey || "profile"); // Initialize activeKey with eventKey from URL or "profile" as default
+    const { eventKey } = useParams(); 
+    const navigate = useNavigate(); 
+    const [activeKey, setActiveKey] = useState(eventKey || "profile"); 
 
     // Update activeKey when eventKey changes
     useEffect(() => {
@@ -36,9 +36,10 @@ export default function Dashboard() {
         <>
             {currentUser ? (
                 <>
-                    {projectSubmitState?.status && projectSubmitState?.action && projectSubmitState?.project ? (
+                    {projectSubmitState?.status && projectSubmitState?.action && projectSubmitState?.project && (
                         <Flag text={`${projectSubmitState.project} has been successfully ${projectSubmitState.action}.`} flagStyle="primary" />
-                    ) : ''}
+                    )}
+                    {/* {<Flag text={`test`} flagStyle="primary" />} */}
                     <Row>
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                             <StaticHeader headerText={"Dashboard"} />
@@ -82,7 +83,7 @@ export default function Dashboard() {
                         </Col>
                     </Row>
                 </>
-            ) : ( '' )}
+            ) : ('')}
 
         </>
     )

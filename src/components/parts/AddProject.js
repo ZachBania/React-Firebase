@@ -21,7 +21,7 @@ const AddProject = () => {
     const excerptRef = useRef();
     const metaRef = useRef();
     const categoryOwnerRef = useRef();
-
+ 
     async function handleProjectSubmit(e) {
         e.preventDefault();
         setLoading(true);
