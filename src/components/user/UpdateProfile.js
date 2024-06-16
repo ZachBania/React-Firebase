@@ -109,7 +109,7 @@ export default function UpdateProfile() {
                   </Form.Group>
 
                   <div className="submit-container">
-                    <p><Link to="/dashboard" className="btn">Cancel</Link></p>
+                    <p><Link to="/dashboard/profile" className="btn">Cancel</Link></p>
                     <p><Button disabled={loading} type="submit" className="btn">Update Profile</Button></p>
                   </div>
                 </Form>

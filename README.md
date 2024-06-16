@@ -7,7 +7,7 @@ This project was created with [Create React App](https://github.com/facebook/cre
 ```javascript
 // Components
     // Parent Context
-    // User Authentication (Login, Logout)
+    // User Authentication (Login, Logout, Signup)
     // Project List and Detail
 
 // Dashboard Authenticated Compontents
@@ -18,7 +18,7 @@ This project was created with [Create React App](https://github.com/facebook/cre
 ## Built with Firebase and Firestore
 
 This project implements [Firebase Auth](https://firebase.google.com/docs/auth) to manage authentication of users, and [Firestore](https://firebase.google.com/docs/firestore/quickstart) to manage all additional data.
- 
+
 ## Available Scripts
 
 ### `npm start`

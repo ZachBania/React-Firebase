@@ -11966,7 +11966,7 @@ form {
 form div {
   padding: 0 0 1em 0 !important;
 }
-form input {
+form input, form textarea {
   padding: 0.25em 0.5em !important;
 }
 form .submit-container {
@@ -12054,14 +12054,17 @@ table tbody tr td {
 }
 
 .accordion {
-  margin: 0 0 1em 0;
+  margin: 0 0 2em 0;
 }
 .accordion .accordion-item {
   background: transparent;
+  border: unset;
+  outline: unset;
 }
 .accordion .accordion-item .accordion-header .accordion-button {
   background: transparent;
   color: #000;
+  font-weight: 800;
   padding: 1em !important;
   outline: rgba(0, 0, 0, 0.25) solid 1px;
 }
@@ -12268,6 +12271,9 @@ footer .row .col a:focus {
   font-size: 1.5em;
   padding: 0 !important;
   margin: 0 !important;
+}
+.dashboard-container .nav.nav-tabs {
+  border: unset;
 }
 .dashboard-container .nav.nav-tabs li button {
   color: #000;

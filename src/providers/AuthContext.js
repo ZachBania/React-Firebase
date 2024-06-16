@@ -1,8 +1,8 @@
-// AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from '../api/firebase';
 import { doc, getDoc, setDoc, updateDoc, deleteDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
@@ -11,26 +11,41 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState();
     const [currentFirestoreUser, setCurrentFirestoreUser] = useState({});
     const [users, setUsers] = useState([]);
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
+    const [projectSubmitState, setProjectSubmitState] = useState({ status: false, action: false, project: false });
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password);
     }
 
-    function login(email, password) {
-        return auth.signInWithEmailAndPassword(email, password)
-    }
 
-    function logout() {
-        return auth.signOut()
-    }
+    const login = async (email, password) => {
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            navigate('/dashboard/profile'); // Navigate to dashboard after login
+        } catch (error) {
+            console.error("Login error:", error);
+            // Handle login error (e.g., show error message)
+        }
+    };
+
+    const logout = async () => {
+        try {
+            await auth.signOut();
+            navigate('/login'); // Navigate to login page after logout
+        } catch (error) {
+            console.error("Logout error:", error);
+            // Handle logout error (if needed)
+        }
+    };
 
     function resetPassword(email) {
-        return auth.sendPasswordResetEmail(email)
+        return auth.sendPasswordResetEmail(email);
     }
 
     function updateEmail(email) {
@@ -44,7 +59,7 @@ export function AuthProvider({ children }) {
     }
 
     function updatePassword(password) {
-        return currentUser.updatePassword(password)
+        return currentUser.updatePassword(password);
     }
 
     async function updateSummary(summary) {
@@ -73,23 +88,25 @@ export function AuthProvider({ children }) {
         const projectId = uuidv4();
         await setDoc(doc(db, "Projects", projectId), project);
         setProject(project);
+        setProjects(prevProjects => [project, ...prevProjects]);
+        setProjectSubmitState({ status: true, action: "added", project: project.project });
     }
 
     async function updateProject(updatedProject) {
-        // Find the document ID by the custom 'id' field
         const q = query(collection(db, "Projects"), where("id", "==", updatedProject.id));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
             const docRef = querySnapshot.docs[0].ref;
             await updateDoc(docRef, updatedProject);
+
+            setProjectSubmitState({ status: true, action: "updated", project: project.project });
         } else {
             console.error(`Project with id ${updatedProject.id} not found.`);
         }
     }
 
     async function deleteProject(projectId) {
-        // Find the document ID by the custom 'id' field
         const q = query(collection(db, "Projects"), where("id", "==", projectId));
         const querySnapshot = await getDocs(q);
 
@@ -107,6 +124,10 @@ export function AuthProvider({ children }) {
         const querySnapshot = await getDocs(q);
         const usersList = querySnapshot.docs.map(doc => doc.data());
         setUsers(usersList);
+    }
+
+    function resetProjectSubmitState() {
+        setProjectSubmitState({ status: false, action: false, project: false });
     }
 
     useEffect(() => {
@@ -150,7 +171,9 @@ export function AuthProvider({ children }) {
         projects,
         setProjects,
         getProjects,
-    }
+        projectSubmitState,
+        resetProjectSubmitState
+    };
 
     return (
         <AuthContext.Provider value={value}>

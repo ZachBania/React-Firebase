@@ -11,7 +11,6 @@ import PageNotFound from "../navigation/PageNotFound";
 // Bootstrap Imports
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 
-// UpdateProject.js
 const UpdateProject = (props) => {
     const { id } = useParams();
     const [project, setProject] = useState(null);
@@ -67,7 +66,7 @@ const UpdateProject = (props) => {
         try {
             await updateProject(p);
             setLoading(false);
-            navigate("/dashboard");
+            navigate("/dashboard/projects");
         } catch (error) {
             setError("Failed to update project: " + error.message);
             setLoading(false);
@@ -81,7 +80,7 @@ const UpdateProject = (props) => {
         try {
             await deleteProject(project.id);
             setLoading(false);
-            navigate("/dashboard");
+            navigate("/dashboard/projects");
         } catch (error) {
             setError("Failed to delete project: " + error.message);
             setLoading(false);
@@ -158,7 +157,7 @@ const UpdateProject = (props) => {
                                     </Form.Group>
 
                                     <div className="submit-container">
-                                        <p><Link to="/dashboard" className="btn">Cancel</Link></p>
+                                        <p><Link to="/dashboard/projects" className="btn">Cancel</Link></p>
                                         <p><Button disabled={loading} type="submit" className="btn">Update Project</Button></p>
                                         <p><Button disabled={loading} onClick={handleDelete} className="btn btn-danger">Delete Project</Button></p>
                                     </div>

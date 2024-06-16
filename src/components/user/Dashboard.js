@@ -1,6 +1,6 @@
-
 // Core Imports
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthContext";
 
 // Component Imports
@@ -9,6 +9,7 @@ import UsersPanel from "../parts/UsersPanel";
 import ProjectsPanel from "../parts/ProjectsPanel";
 import AddProject from "../parts/AddProject";
 import Profile from "./Profile";
+import Flag from "../parts/Flag";
 
 // Bootstrap Imports
 import { Row, Col, Accordion } from "react-bootstrap";
@@ -16,12 +17,28 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
 export default function Dashboard() {
-    const { currentUser, currentFirestoreUser, logout } = useAuth()
+    const { currentUser, currentFirestoreUser, projectSubmitState, resetProjectSubmitState } = useAuth();
+    const { eventKey } = useParams(); // Retrieve eventKey from URL
+    const navigate = useNavigate(); // Hook to navigate programmatically
+    const [activeKey, setActiveKey] = useState(eventKey || "profile"); // Initialize activeKey with eventKey from URL or "profile" as default
+
+    // Update activeKey when eventKey changes
+    useEffect(() => {
+        setActiveKey(eventKey || "profile");
+    }, [eventKey]);
+
+    // Function to handle tab change and update URL
+    const handleTabChange = (selectedKey) => {
+        navigate(`/dashboard/${selectedKey}`);
+    };
 
     return (
         <>
             {currentUser ? (
                 <>
+                    {projectSubmitState?.status && projectSubmitState?.action && projectSubmitState?.project ? (
+                        <Flag text={`${projectSubmitState.project} has been successfully ${projectSubmitState.action}.`} flagStyle="primary" />
+                    ) : ''}
                     <Row>
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                             <StaticHeader headerText={"Dashboard"} />
@@ -32,12 +49,16 @@ export default function Dashboard() {
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                             <div className="dashboard-container">
 
-                                <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                                <Tabs
+                                    activeKey={activeKey}
+                                    onSelect={handleTabChange}
+                                    id="dashboard-tabs"
+                                >
                                     <Tab eventKey="profile" title="Profile">
                                         <h2>Profile</h2>
                                         <Profile />
                                     </Tab>
-                                    <Tab eventKey="project" title="All Projects">
+                                    <Tab eventKey="projects" title="All Projects">
 
                                         <Accordion>
                                             <Accordion.Item eventKey="0">
@@ -49,23 +70,19 @@ export default function Dashboard() {
                                         </Accordion>
 
                                         <h2>All Projects</h2>
-                                        <ProjectsPanel />                                        
+                                        <ProjectsPanel />
                                     </Tab>
-                                    <Tab eventKey="user" title="All Users">
+                                    <Tab eventKey="users" title="All Users">
                                         <h2>All Users</h2>
                                         <UsersPanel />
                                     </Tab>
                                 </Tabs>
 
-
                             </div>
                         </Col>
                     </Row>
                 </>
-            ) : (
-                <>
-                </>
-            )}
+            ) : ( '' )}
 
         </>
     )

@@ -11,7 +11,7 @@ form {
         padding: 0 0 1em 0 !important;
     }
 
-    input {
+    input, textarea {
         padding: .25em .5em !important;
     }
 
@@ -134,15 +134,18 @@ table {
 }
 
 .accordion {
-    margin: 0 0 1em 0;
+    margin: 0 0 2em 0;
 
     .accordion-item {
         background: transparent;
+        border: unset;
+        outline: unset;
 
         .accordion-header {
             .accordion-button {
                 background: transparent;
                 color: $color_primary_dark;
+                font-weight: 800;
                 padding: 1em !important;
                 outline: rgba(0,0,0, .25) solid 1px;
 
@@ -394,6 +397,7 @@ footer {
     }
 
     .nav.nav-tabs  {
+        border: unset;
 
         li {
 

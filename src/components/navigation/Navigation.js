@@ -40,11 +40,10 @@ const Navigation = (props) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <ul>
-                        {currentUser ? (<li><Link to="/dashboard">Dashboard</Link></li>) : '' }
+                        {currentUser ? (<li><Link to="/dashboard/profile">Dashboard</Link></li>) : '' }
                             <li><Link to="/projects">Projects</Link></li>
                             {currentUser ? (
                                 <>
-                                    
                                     <li className='mobile'><Link onClick={handleLogout}>Logout</Link></li>
                                 </>
                             ) : (

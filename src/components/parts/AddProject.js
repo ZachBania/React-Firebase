@@ -7,12 +7,11 @@ import BS_Badge from "./BS_Badge";
 
 // Bootstrap Imports
 import { Stack, Table, Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 const AddProject = () => {
+    
     const { currentUser } = useAuth();
     const { project, setProject, addProject } = useAuth();
-    const navigate = useNavigate();
 
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -40,7 +39,12 @@ const AddProject = () => {
         try {
             await addProject(p);
             setLoading(false);
-            navigate(0);
+            idRef.current.value = '';
+            headerRef.current.value = '';
+            descriptionRef.current.value = '';
+            excerptRef.current.value = '';
+            metaRef.current.value = '';
+            categoryOwnerRef.current.value = '';
         } catch (error) {
             setError("Failed to add project: " + error.message);
             setLoading(false);
@@ -50,6 +54,8 @@ const AddProject = () => {
     return (
         <>
             {currentUser ? (
+                <>
+                {}
                 <div className="add-project-container">
 
                     <Form onSubmit={handleProjectSubmit}>
@@ -88,7 +94,7 @@ const AddProject = () => {
                                 ref={excerptRef}
                                 required
                             />
-                        </Form.Group>                        
+                        </Form.Group>
 
                         <Form.Group id="meta">
                             <Form.Label>Meta</Form.Label>
@@ -119,7 +125,8 @@ const AddProject = () => {
 
 
 
-                </div>
+                </div >
+                </>
             ) : ('')}
         </>
     )
