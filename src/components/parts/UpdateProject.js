@@ -75,9 +75,10 @@ const UpdateProject = (props) => {
     async function handleDelete() {
         setLoading(true);
         setError("");
-
+    
         try {
             await deleteProject(project.id);
+            setProjectSubmitState({ status: true, action: "deleted", project: project.header });
             setLoading(false);
             navigate("/dashboard/projects");
         } catch (error) {
