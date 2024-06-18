@@ -8,7 +8,7 @@ import { useAuth } from "../../providers/AuthContext";
 import { Table } from "react-bootstrap";
 
 const UsersPanel = () => {
-    const { currentUser, users, setUsers, getUsers } = useAuth();  
+    const { currentUser, users, setUsers, getUsers } = useAuth();
 
     useEffect(() => {
         getUsers();
@@ -18,6 +18,9 @@ const UsersPanel = () => {
         <>
             {currentUser ? (
                 <div className="users-panel-container">
+
+                    <h2>All Users</h2>
+
                     <Table>
                         <thead>
                             <tr>
@@ -30,7 +33,7 @@ const UsersPanel = () => {
                         </thead>
                         <tbody>
                             <>
-                            {users.length > 0 ? (
+                                {users.length > 0 ? (
                                     users.map((user, i) => (
                                         <tr key={user.i}>
                                             <td className="uid"><p>{i}</p></td>

@@ -49,7 +49,9 @@ function Detail(props) {
             <Row>
                 <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                     <div className="project-detail-container">
-                        <p className="project-excerpt">{ project.excerpt ? project.excerpt : ''}</p>
+                        <div className="project-description">
+                            {project.description.map((desc) => <p>{desc}</p>)}  
+                        </div>
                         <Link to="/projects" className="btn">Back to projects</Link>
                     </div>
                 </Col>

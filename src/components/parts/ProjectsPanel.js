@@ -28,14 +28,15 @@ const ProjectsPanel = () => {
         <>
             {currentUser ? (
                 <div className="projects-panel-container">
+
+                    <h2>All Projects</h2>
+                    
                     <Table>
                         <thead>
                             <tr>
                                 <th><p>#</p></th>
                                 <th><p>Header</p></th>
-                                <th><p>Description</p></th>
-                                <th><p>Meta</p></th>
-                                <th><p>Category</p></th>
+                                <th><p>Excerpt</p></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,13 +46,8 @@ const ProjectsPanel = () => {
                                         <tr key={project.id} onClick={() => updateProjectRoute(project.id)}>
                                             <td className="id"><p>{project.id}</p></td>
                                             <td className="header"><p>{project.header}</p></td>
-                                            <td className="description"><p>{project.description}</p></td>
-                                            <td className="meta"><p>{project.meta}</p></td>
-                                            <td className="category_owner">
-                                                <Stack direction="horizontal" gap={2}>
-                                                    <BS_Badge badgeStyle={"primary bg-" + project.category_owner.toLowerCase()} text={project.category_owner} />
-                                                </Stack>
-                                            </td>
+                                            <td className="excerpt"><p>{project.excerpt}</p></td>
+                         
                                         </tr>
                                     ))
                                 ) : ('')}

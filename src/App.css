@@ -11956,9 +11956,32 @@ p {
   color: #000;
 }
 
+.nav.nav-tabs {
+  border: unset;
+}
+.nav.nav-tabs li button {
+  color: #000;
+  background: transparent;
+  font-weight: 600;
+  border-radius: unset;
+  padding: 0.5em 1em;
+  border: unset;
+  outline: black solid 1px;
+}
+.nav.nav-tabs li button:hover, .nav.nav-tabs li button:active, .nav.nav-tabs li button:focus {
+  cursor: pointer;
+}
+.nav.nav-tabs li button.active {
+  background: #5fdbf8;
+}
+
+.tab-content {
+  background: transparent;
+  padding: 1em 0 0 0;
+}
 form {
   border: rgba(0, 0, 0, 0.25) solid 1px;
-  border-radius: 0.5em;
+  border-radius: 0.25em;
   padding: 1em !important;
   margin: 1em 0;
   max-width: 400px;
@@ -11983,10 +12006,12 @@ table thead tr th {
   font-weight: 800;
   background: transparent !important;
   outline: rgba(0, 0, 0, 0.25) solid 1px;
+  min-width: 100px;
 }
 table tbody tr {
   border-color: transparent;
   transition: 0.25s;
+  min-width: 100px;
 }
 table tbody tr:hover, table tbody tr:active {
   background: rgba(0, 0, 0, 0.05) !important;
@@ -12063,7 +12088,7 @@ table tbody tr td {
 }
 
 .accordion {
-  margin: 0 0 2em 0;
+  margin: 1em 0 2em 0;
 }
 .accordion .accordion-item {
   background: transparent;
@@ -12075,6 +12100,9 @@ table tbody tr td {
   color: #000;
   font-weight: 800;
   padding: 1em !important;
+  border: unset;
+  border-radius: 0.25em;
+  box-shadow: unset;
   outline: rgba(0, 0, 0, 0.25) solid 1px;
 }
 nav.navbar {
@@ -12241,6 +12269,7 @@ footer .row .col a:focus {
   color: #000;
   margin: 0;
   padding: 0 0.25em;
+  position: relative;
 }
 @media (min-width: 768px) {
   .static-header-component h1, .static-header-component .h1 {
@@ -12281,25 +12310,7 @@ footer .row .col a:focus {
   padding: 0 !important;
   margin: 0 !important;
 }
-.dashboard-container .nav.nav-tabs {
-  border: unset;
-}
-.dashboard-container .nav.nav-tabs li button {
-  color: #000;
-  background: transparent;
-  font-weight: 600;
-  border-radius: unset;
-  padding: 0.5em 1em;
-  border: unset;
-  outline: black solid 1px;
-}
-.dashboard-container .nav.nav-tabs li button.active {
-  background: #5fdbf8;
-}
-.dashboard-container .tab-content {
-  background: transparent;
-  padding: 2em 0 0 0;
-}
+
 .projects-container {
   display: flex;
   flex-wrap: wrap;
@@ -12381,7 +12392,10 @@ footer .row .col a:focus {
 }
 
 .projects-panel-container {
-  padding: 1em 0;
+  padding: 0 0 1em 0;
+}
+.projects-panel-container h2, .projects-panel-container .h2 {
+  margin: 0 0 1em 0 !important;
 }
 .projects-panel-container table tbody tr:hover, .projects-panel-container table tbody tr:active, .projects-panel-container table tbody tr:focus {
   cursor: pointer;
@@ -12429,6 +12443,9 @@ footer .row .col a:focus {
 .profile-container {
   padding: 1em 0 0 0;
 }
+.profile-container h2, .profile-container .h2 {
+  margin: 0 0 0.75em 0 !important;
+}
 .profile-container .btn {
   margin: 1em 0 0 0;
 }
@@ -12457,7 +12474,7 @@ footer .row .col a:focus {
 .user-panel-container {
   display: none;
   width: 100%;
-  border-radius: 0.5em;
+  border-radius: 0.25em;
   padding: 0.5em;
 }
 @media (min-width: 768px) {
@@ -12472,7 +12489,10 @@ footer .row .col a:focus {
 }
 
 .users-panel-container {
-  padding: 1em 0;
+  padding: 0 0 1em 0;
+}
+.users-panel-container h2, .users-panel-container .h2 {
+  margin: 0.5em 0 1em 0 !important;
 }
 
 /*# sourceMappingURL=App.css.map */

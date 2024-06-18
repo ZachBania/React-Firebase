@@ -12,64 +12,63 @@ import PageNotFound from "../navigation/PageNotFound";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 
 const UpdateProject = (props) => {
-    const { id } = useParams();
-    const [project, setProject] = useState(null);
-    const [projectsFetched, setProjectsFetched] = useState(false);
-    const { currentUser, projects, getProjects, updateProject, deleteProject } = useAuth();
-
-    const navigate = useNavigate();
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-    const idRef = useRef();
-    const headerRef = useRef();
-    const descriptionRef = useRef();
+    const { id } = useParams(); 
+    const { currentUser, projects, getProjects, updateProject, deleteProject, setProjectSubmitState } = useAuth(); 
+    const navigate = useNavigate(); 
+    const [error, setError] = useState(""); 
+    const [loading, setLoading] = useState(false); 
+    const [project, setProject] = useState(null); 
+    const idRef = useRef(); 
+    const headerRef = useRef(); 
+    const descriptionZeroRef = useRef(); 
+    const descriptionOneRef = useRef();
+    const descriptionTwoRef = useRef();
     const excerptRef = useRef();
     const metaRef = useRef();
     const categoryOwnerRef = useRef();
 
+
     useEffect(() => {
         async function fetchData() {
-            await getProjects();
-            setProjectsFetched(true); 
+            await getProjects(); 
         }
-
-        if (!projectsFetched) {
-            fetchData();
-        }
-    }, [getProjects, projectsFetched]);
+        fetchData();
+    }, [getProjects]); 
 
     useEffect(() => {
-        if (projects.length > 0) {
-            const selectedProject = projects.find(proj => proj.id === parseInt(id));
-            setProject(selectedProject);
-        }
-    }, [projects, id]);
+        const selectedProject = projects.find(proj => proj.id === parseInt(id));
+        setProject(selectedProject); 
+    }, [projects, id]); 
 
     if (!project) {
         return <PageNotFound />;
     }
-
     async function handleSubmit(e) {
-        e.preventDefault();
-        setLoading(true);
-        setError("");
-    
-        const p = { 
+        e.preventDefault(); 
+        setLoading(true); 
+        setError(""); 
+
+        const updatedProject = {
             id: project.id,
             header: headerRef.current.value || project.header,
-            description: descriptionRef.current.value || project.description,
+            description: [
+                descriptionZeroRef.current.value || project.description[0],
+                descriptionOneRef.current.value || project.description[1],
+                descriptionTwoRef.current.value || project.description[2]
+            ],
             excerpt: excerptRef.current.value || project.excerpt,
             meta: metaRef.current.value || project.meta,
             category_owner: categoryOwnerRef.current.value || project.category_owner
         };
-    
+
         try {
-            await updateProject(p);
-            setLoading(false);
-            navigate("/dashboard/projects");
+            await updateProject(updatedProject); 
+            setProjectSubmitState({ status: true, action: "updated", project: updatedProject.header });
+            setLoading(false); 
+            navigate("/dashboard/projects"); 
         } catch (error) {
             setError("Failed to update project: " + error.message);
-            setLoading(false);
+            setLoading(false); 
         }
     }
 
@@ -120,14 +119,30 @@ const UpdateProject = (props) => {
                                         />
                                     </Form.Group>
 
-                                    <Form.Group id="description">
-                                        <Form.Label>Description</Form.Label>
-                                        <Form.Control
-                                            as="textarea" rows={3}
-                                            ref={descriptionRef}
-                                            defaultValue={project.description}
-                                        />
-                                    </Form.Group>
+                                    <div id="description">
+                                        <Form.Group id="description_zero">
+                                            <Form.Label>Description</Form.Label>
+                                            <Form.Control
+                                                as="textarea" rows={3}
+                                                ref={descriptionZeroRef}
+                                                defaultValue={project.description[0]}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group id="description_one">
+                                            <Form.Control
+                                                as="textarea" rows={3}
+                                                ref={descriptionOneRef}
+                                                defaultValue={project.description[1]}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group id="description_two">
+                                            <Form.Control
+                                                as="textarea" rows={3}
+                                                ref={descriptionTwoRef}
+                                                defaultValue={project.description[2]}
+                                            />
+                                        </Form.Group>
+                                    </div>
 
                                     <Form.Group id="excerpt">
                                         <Form.Label>Excerpt</Form.Label>

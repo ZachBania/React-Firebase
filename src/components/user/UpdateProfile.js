@@ -54,6 +54,7 @@ export default function UpdateProfile() {
       .finally(() => {
         setLoading(false)
       })
+      
   }
 
   return (

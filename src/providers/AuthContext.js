@@ -18,33 +18,28 @@ export function AuthProvider({ children }) {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
     const [projectSubmitState, setProjectSubmitState] = useState({ status: false, action: false, project: false });
-    
-
-
-    function signup(email, password) {
-        return auth.createUserWithEmailAndPassword(email, password);
-    }
-
 
     const login = async (email, password) => {
         try {
             await auth.signInWithEmailAndPassword(email, password);
-            navigate('/dashboard/profile'); // Navigate to dashboard after login
+            navigate('/dashboard/profile'); 
         } catch (error) {
             console.error("Login error:", error);
-            // Handle login error (e.g., show error message)
         }
     };
 
     const logout = async () => {
         try {
             await auth.signOut();
-            navigate('/login'); // Navigate to login page after logout
+            navigate('/login');
         } catch (error) {
             console.error("Logout error:", error);
-            // Handle logout error (if needed)
         }
     };
+
+    function signup(email, password) {
+        return auth.createUserWithEmailAndPassword(email, password);
+    }
 
     function resetPassword(email) {
         return auth.sendPasswordResetEmail(email);
@@ -173,8 +168,10 @@ export function AuthProvider({ children }) {
         projects,
         setProjects,
         getProjects,
+        // Project Submit Flag
         projectSubmitState,
-        resetProjectSubmitState
+        setProjectSubmitState,
+        resetProjectSubmitState,
     };
 
     return (

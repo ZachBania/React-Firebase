@@ -1,15 +1,16 @@
 // Core Imports
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './providers/AuthContext';
+import { AuthProvider, useAuth } from './providers/AuthContext';
 
 // Component Imports
 import Navigation from './components/navigation/Navigation';
 import Home from './components/home/Home';
 import Footer from './components/navigation/Footer';
-import Dashboard from './components/user/Dashboard'; 
+import Dashboard from './components/user/Dashboard';
 import PageNotFound from './components/navigation/PageNotFound';
+import Flag from './components/parts/Flag';
 
 // Component Imports - Projects
 import List from './components/list/List';
@@ -24,10 +25,12 @@ import Login from './components/user/Login';
 import Container from 'react-bootstrap/Container';
 
 function App() {
+
   return (
+
     <AuthProvider>
       <Navigation />
-      <Container>
+      <Container data-aos="fade-up">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<List />} />

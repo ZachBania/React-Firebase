@@ -18,9 +18,9 @@ import Tabs from 'react-bootstrap/Tabs';
 
 export default function Dashboard() {
     const { currentUser, currentFirestoreUser, projectSubmitState, resetProjectSubmitState } = useAuth();
-    const { eventKey } = useParams(); 
-    const navigate = useNavigate(); 
-    const [activeKey, setActiveKey] = useState(eventKey || "profile"); 
+    const { eventKey } = useParams();
+    const navigate = useNavigate();
+    const [activeKey, setActiveKey] = useState(eventKey || "profile");
 
     // Update activeKey when eventKey changes
     useEffect(() => {
@@ -39,12 +39,13 @@ export default function Dashboard() {
                     {projectSubmitState?.status && projectSubmitState?.action && projectSubmitState?.project && (
                         <Flag text={`${projectSubmitState.project} has been successfully ${projectSubmitState.action}.`} flagStyle="primary" />
                     )}
-                    
+
                     <Row>
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
                             <StaticHeader headerText={"Dashboard"} />
                         </Col>
                     </Row>
+
 
                     <Row>
                         <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
@@ -52,7 +53,6 @@ export default function Dashboard() {
 
                                 <Tabs activeKey={activeKey} onSelect={handleTabChange} id="dashboard-tabs">
                                     <Tab eventKey="profile" title="Profile">
-                                        <h2>Profile</h2>
                                         <Profile />
                                     </Tab>
                                     <Tab eventKey="projects" title="All Projects">
@@ -66,11 +66,9 @@ export default function Dashboard() {
                                             </Accordion.Item>
                                         </Accordion>
 
-                                        <h2>All Projects</h2>
                                         <ProjectsPanel />
                                     </Tab>
                                     <Tab eventKey="users" title="All Users">
-                                        <h2>All Users</h2>
                                         <UsersPanel />
                                     </Tab>
                                 </Tabs>
