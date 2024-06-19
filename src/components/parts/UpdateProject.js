@@ -109,6 +109,7 @@ const UpdateProject = (props) => {
                                             type="number"
                                             ref={idRef}
                                             defaultValue={project.id}
+                                            placeholder="ID"
                                             readOnly
                                         />
                                     </Form.Group>
@@ -118,6 +119,7 @@ const UpdateProject = (props) => {
                                         <Form.Control
                                             type="text"
                                             ref={headerRef}
+                                            placeholder="Header"
                                             defaultValue={project.header}
                                         />
                                     </Form.Group>
@@ -128,6 +130,7 @@ const UpdateProject = (props) => {
                                             <Form.Control
                                                 as="textarea" rows={3}
                                                 ref={descriptionZeroRef}
+                                                placeholder="Description one"
                                                 defaultValue={project.description[0]}
                                             />
                                         </Form.Group>
@@ -135,6 +138,7 @@ const UpdateProject = (props) => {
                                             <Form.Control
                                                 as="textarea" rows={3}
                                                 ref={descriptionOneRef}
+                                                placeholder="Description two"
                                                 defaultValue={project.description[1]}
                                             />
                                         </Form.Group>
@@ -142,6 +146,7 @@ const UpdateProject = (props) => {
                                             <Form.Control
                                                 as="textarea" rows={3}
                                                 ref={descriptionTwoRef}
+                                                placeholder="Description three"
                                                 defaultValue={project.description[2]}
                                             />
                                         </Form.Group>
@@ -152,6 +157,7 @@ const UpdateProject = (props) => {
                                         <Form.Control
                                             as="textarea" rows={3}
                                             ref={excerptRef}
+                                            placeholder="Excerpt"
                                             defaultValue={project.excerpt}
                                         />
                                     </Form.Group>
@@ -161,6 +167,7 @@ const UpdateProject = (props) => {
                                         <Form.Control
                                             type="text"
                                             ref={metaRef}
+                                            placeholder="Meta"
                                             defaultValue={project.meta}
                                         />
                                     </Form.Group>
@@ -170,6 +177,7 @@ const UpdateProject = (props) => {
                                         <Form.Control
                                             type="text"
                                             ref={categoryOwnerRef}
+                                            placeholder="Category (Agency, Freelance)"
                                             defaultValue={project.category_owner}
                                         />
                                     </Form.Group>

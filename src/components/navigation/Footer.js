@@ -1,13 +1,13 @@
 // Core Imports
+import { Link } from 'react-router-dom';
 
 // Component Imports
 
 // Bootstrap Imports
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom';
 
-const Footer = (props) => (
+const Footer = () => (
     
     <footer>
 

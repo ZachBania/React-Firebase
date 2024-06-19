@@ -1,6 +1,5 @@
 // Core Imports
-import React, { useEffect, useState } from "react";
-// import exData from "../../api/exData";
+import React, { useEffect } from "react";
 import { useAuth } from '../../providers/AuthContext';
 
 //Component Import
@@ -13,7 +12,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function List() {
-    const { projects, setProjects, getProjects, currentFirestoreUser } = useAuth();
+    const { currentUser, projects, getProjects } = useAuth();
 
     useEffect(() => {
         getProjects();
@@ -33,7 +32,7 @@ function List() {
                     </div>
                 </Col>
                 <Col className={'col'} sm="12" md="12" lg="4" xl="4" xxl="4">
-                    <RecentlyViewedList />
+                    { currentUser && <RecentlyViewedList />}
                 </Col>
             </Row>
         </>

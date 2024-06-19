@@ -10,7 +10,6 @@ import Home from './components/home/Home';
 import Footer from './components/navigation/Footer';
 import Dashboard from './components/user/Dashboard';
 import PageNotFound from './components/navigation/PageNotFound';
-import Flag from './components/parts/Flag';
 
 // Component Imports - Projects
 import List from './components/list/List';

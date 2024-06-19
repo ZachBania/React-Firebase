@@ -1,5 +1,5 @@
 // Core Imports
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuth } from "../../providers/AuthContext";
 import { Link } from "react-router-dom";
 

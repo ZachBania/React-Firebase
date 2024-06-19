@@ -4,11 +4,9 @@ import { useAuth } from "../../providers/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 // Component Imports
-import BS_Badge from "./BS_Badge";
-import UpdateProject from "./UpdateProject";
 
 // Bootstrap Imports
-import { Stack, Table, Button } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 const ProjectsPanel = () => {
     const { currentUser } = useAuth();

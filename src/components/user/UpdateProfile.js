@@ -77,6 +77,7 @@ export default function UpdateProfile() {
                     <Form.Control
                       type="email"
                       ref={emailRef}
+                      placeholder="Email"
                       required
                       defaultValue={currentUser.email}
                     />
@@ -87,7 +88,7 @@ export default function UpdateProfile() {
                       type="password"
                       ref={passwordRef}
                       defaultValue={''}
-                      placeholder="Leave blank to keep the same"
+                      placeholder="Password"
                     />
                   </Form.Group>
                   <Form.Group id="password-confirm">
@@ -105,6 +106,7 @@ export default function UpdateProfile() {
                     <Form.Control
                       type="text"
                       ref={summaryRef}
+                      placeholder="Summary"
                       defaultValue={currentFirestoreUser.summary}
                     />
                   </Form.Group>

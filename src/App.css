@@ -11989,8 +11989,11 @@ form {
 form div {
   padding: 0 0 1em 0 !important;
 }
-form input, form textarea {
+form .form-control {
   padding: 0.25em 0.5em !important;
+}
+form .form-control:focus, form .form-control:focus-visible, form .form-control:focus-within, form .form-control:target {
+  box-shadow: 0 0 0 0.25rem #5fdbf8;
 }
 form .submit-container {
   display: flex;
@@ -12411,7 +12414,7 @@ footer .row .col a:focus {
 .recently-viewed-list-container h3, .recently-viewed-list-container .h3 {
   font-size: 1em;
   text-decoration: underline;
-  margin: 0 0 0.25em 0;
+  margin: 0 0 0.75em 0;
   padding: 0;
 }
 .recently-viewed-list-container .recently-viewed-list {
@@ -12427,9 +12430,20 @@ footer .row .col a:focus {
 .recently-viewed-list-container .recently-viewed-list li a:link,
 .recently-viewed-list-container .recently-viewed-list li a:visited {
   color: #000;
-  padding: 0.25em 0;
+  padding: 0.25em 1em 0.25em 0;
   text-decoration: none;
   transition: 0.5s;
+}
+.recently-viewed-list-container .recently-viewed-list li a:link .id,
+.recently-viewed-list-container .recently-viewed-list li a:visited .id {
+  background: #000;
+  color: #FFF;
+  font-weight: 800;
+  display: inline-block;
+  border-radius: 0.25em;
+  width: 1.75em;
+  text-align: center;
+  margin: 0 0.5em 0 0;
 }
 .recently-viewed-list-container .recently-viewed-list li a:hover,
 .recently-viewed-list-container .recently-viewed-list li a:active,

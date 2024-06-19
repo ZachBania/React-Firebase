@@ -71,6 +71,7 @@ const AddProject = () => {
                                 <Form.Control
                                     type="number"
                                     ref={idRef}
+                                    placeholder="ID"
                                     required
                                 />
                             </Form.Group>
@@ -80,6 +81,7 @@ const AddProject = () => {
                                 <Form.Control
                                     type="text"
                                     ref={headerRef}
+                                    placeholder="Header"
                                     required
                                 />
                             </Form.Group>
@@ -89,18 +91,21 @@ const AddProject = () => {
                                     <Form.Label>Description</Form.Label>
                                     <Form.Control
                                         as="textarea" rows={3}
+                                        placeholder="Description one"
                                         ref={descriptionZeroRef}
                                     />
                                 </Form.Group>
                                 <Form.Group id="description_one">
                                     <Form.Control
                                         as="textarea" rows={3}
+                                        placeholder="Description two"
                                         ref={descriptionOneRef}
                                     />
                                 </Form.Group>
                                 <Form.Group id="description_two">
                                     <Form.Control
                                         as="textarea" rows={3}
+                                        placeholder="Description three"
                                         ref={descriptionTwoRef}
                                     />
                                 </Form.Group>
@@ -111,6 +116,7 @@ const AddProject = () => {
                                 <Form.Control
                                     as="textarea" rows={3}
                                     ref={excerptRef}
+                                    placeholder="Excerpt"
                                     required
                                 />
                             </Form.Group>
@@ -120,6 +126,7 @@ const AddProject = () => {
                                 <Form.Control
                                     type="text"
                                     ref={metaRef}
+                                    placeholder="Meta"
                                     required
                                 />
                             </Form.Group>
@@ -129,6 +136,7 @@ const AddProject = () => {
                                 <Form.Control
                                     type="text"
                                     ref={categoryOwnerRef}
+                                    placeholder="Category (Agency, Freelance)"
                                     required
                                 />
                             </Form.Group>

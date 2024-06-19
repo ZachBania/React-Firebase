@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
     const [projectSubmitState, setProjectSubmitState] = useState({ status: false, action: false, project: false });
-    
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             setCurrentUser(user);
@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
         try {
             await auth.signInWithEmailAndPassword(email, password);
-            navigate('/dashboard/profile'); 
+            navigate('/dashboard/profile');
         } catch (error) {
             console.error("Login error:", error);
         }
@@ -97,12 +97,13 @@ export function AuthProvider({ children }) {
         const userDocRef = doc(db, "Users", currentUser.uid);
         const recentlyViewed = (await getDoc(userDocRef));
         const recentlyViewedData = recentlyViewed.data().recently_viewed || [];
+        // recentlyViewedData.sort(function(a, b){return b - a})
 
         let value = parseInt(val);
-        if(recentlyViewedData.includes(value) == false && recentlyViewedData.length >= 5) {
-            recentlyViewedData.shift(); 
+        if (recentlyViewedData.includes(value) == false && recentlyViewedData.length >= 5) {
+            recentlyViewedData.shift();
             recentlyViewedData.push(value);
-        } else if(recentlyViewedData.includes(value) == false) {
+        } else if (recentlyViewedData.includes(value) == false) {
             recentlyViewedData.push(value);
         }
 
@@ -125,10 +126,9 @@ export function AuthProvider({ children }) {
         setProjects(projectsList);
     }
 
-    
     async function getRecentlyViewedProjects() {
         // Return the projects if the project id is in the User's recently_viewed array
-        
+
         const userDocRef = doc(db, "Users", currentUser.uid);
         const recentlyViewedIds = (await getDoc(userDocRef)).data().recently_viewed || [];
 
@@ -136,7 +136,7 @@ export function AuthProvider({ children }) {
             return [];
         }
 
-        const q = query(collection(db, "Projects"), where('id', 'in', recentlyViewedIds));
+        const q = query(collection(db, "Projects"), where('id', 'in', recentlyViewedIds), orderBy('id', 'desc'));
         const querySnapshot = await getDocs(q);
         const recentlyViewedProjects = querySnapshot.docs.map(doc => ({ ...doc.data(), docId: doc.id }));
         return recentlyViewedProjects;
@@ -191,7 +191,6 @@ export function AuthProvider({ children }) {
     const value = {
         currentUser,
         currentFirestoreUser,
-        setCurrentFirestoreUser,
         users,
         getUsers,
         login,

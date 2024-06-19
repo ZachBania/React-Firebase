@@ -45,8 +45,15 @@ form {
         padding: 0 0 1em 0 !important;
     }
 
-    input, textarea {
+    .form-control {
         padding: .25em .5em !important;
+
+        &:focus,
+        &:focus-visible,
+        &:focus-within,
+        &:target {
+            box-shadow: 0 0 0 0.25rem $color_primary;
+        }
     }
 
     .submit-container {

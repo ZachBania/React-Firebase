@@ -15,7 +15,7 @@ import Col from 'react-bootstrap/Col';
 function Detail(props) {
     const { id } = useParams();
     const [project, setProject] = useState(null);
-    const { projects, getProjects, currentFirestoreUser, updateRecentlyViewed } = useAuth();  
+    const { currentUser, projects, getProjects, updateRecentlyViewed } = useAuth();  
 
     useEffect(() => {
         async function fetchData() {
@@ -31,7 +31,9 @@ function Detail(props) {
         if (projects.length > 0) {
             const selectedProject = projects.find(proj => proj.id === parseInt(id));
             setProject(selectedProject);
-            updateRecentlyViewed(id);
+            if(currentUser) {
+                updateRecentlyViewed(id);
+            }
         }
     }, [projects, id]);
 

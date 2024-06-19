@@ -28,7 +28,7 @@ const RecentlyViewedList = () => {
                     <h3>Recently viewed:</h3>
                     <ul className="recently-viewed-list">
                         {recentProjects.map((project) => (
-                            <li><Link to={`/projects/${project.id}`}>{project.header}</Link></li>
+                            <li><Link to={`/projects/${project.id}`}><span className="id">{project.id}</span>{project.header}</Link></li>
                         ))}
                     </ul>
                 </div>
