@@ -7,7 +7,6 @@ html, body {
   font-size: 16px;
   background: #efefef;
   line-height: 1.25em;
-
   min-width: 350px;
 }
 
@@ -28,13 +27,10 @@ p {
   outline: #000 solid 1px;
 }
 
-
 .row {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 .5em;
-
-  
 
   * {
     padding: 0;
@@ -42,15 +38,13 @@ p {
 }
 
 .col {
-  outline: rgba(0,0,0,.25) solid 1px;
+  outline: $color_outline solid 1px;
 
   @media(max-width: 575px) {
     flex: 1 1 100%;
   }
 }
 
-  
- 
 .btn {
   background: $color_primary_light;
   border: $color_primary_dark solid 1px;
@@ -64,7 +58,6 @@ p {
     border: $color_primary solid 1px;
     color:$color_primary_dark;
   }
-
 }
 
 @import './assets/scss/elements.scss';

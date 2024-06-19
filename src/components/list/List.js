@@ -1,21 +1,22 @@
 // Core Imports
 import React, { useEffect, useState } from "react";
 // import exData from "../../api/exData";
-import {useAuth} from '../../providers/AuthContext';
+import { useAuth } from '../../providers/AuthContext';
 
 //Component Import
 import ListRow from './ListRow';
 import StaticHeader from "../parts/StaticHeader";
+import RecentlyViewedList from "../parts/RecentlyViewedList";
 
 // Bootstrap Imports 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function List() {
-    const { projects, setProjects, getProjects } = useAuth();  
+    const { projects, setProjects, getProjects, currentFirestoreUser } = useAuth();
 
     useEffect(() => {
-        getProjects();  
+        getProjects();
     }, []);
 
     return (
@@ -26,13 +27,13 @@ function List() {
                 </Col>
             </Row>
             <Row>
-                <Col className={'col'} sm="12" md="12" lg="12" xl="12" xxl="12">
+                <Col className={'col'} sm="12" md="12" lg="8" xl="8" xxl="8">
                     <div className={'projects-container'}>
-
-                        {projects.map((x) =>
-                            <ListRow key={x.id} project={x} />
-                        )}
+                        {projects.map((x) => <ListRow key={x.id} project={x} />)}
                     </div>
+                </Col>
+                <Col className={'col'} sm="12" md="12" lg="4" xl="4" xxl="4">
+                    <RecentlyViewedList />
                 </Col>
             </Row>
         </>

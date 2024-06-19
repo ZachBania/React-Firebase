@@ -1,5 +1,5 @@
 // Core Imports
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../providers/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -9,25 +9,15 @@ import { Link } from "react-router-dom";
 
 const UserPanel = () => {
     const [error, setError] = useState("")
-    const { currentUser, currentFirestoreUser, logout } = useAuth();
-
-    async function handleLogout() {
-        setError("")
-
-        try {
-            await logout()
-            //   history.push("/login")
-        } catch {
-            setError("Failed to log out")
-        }
-    }
+    const { currentUser, currentFirestoreUser, getRecentlyViewedProjects } = useAuth();
+    
 
     return (
         <>
             <div className="user-panel-container">
                 {currentUser ? (
                     <>
-                        <p>{currentFirestoreUser.first_name ? "Welcome, " + currentFirestoreUser.first_name : ''}</p>
+                        
                     </>
                 ) : (
                     <>

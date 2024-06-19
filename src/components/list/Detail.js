@@ -15,7 +15,7 @@ import Col from 'react-bootstrap/Col';
 function Detail(props) {
     const { id } = useParams();
     const [project, setProject] = useState(null);
-    const { projects, getProjects } = useAuth();  
+    const { projects, getProjects, currentFirestoreUser, updateRecentlyViewed } = useAuth();  
 
     useEffect(() => {
         async function fetchData() {
@@ -31,8 +31,10 @@ function Detail(props) {
         if (projects.length > 0) {
             const selectedProject = projects.find(proj => proj.id === parseInt(id));
             setProject(selectedProject);
+            updateRecentlyViewed(id);
         }
     }, [projects, id]);
+
 
     if (!project) {
         return <PageNotFound />;

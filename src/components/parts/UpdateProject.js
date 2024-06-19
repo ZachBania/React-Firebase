@@ -13,7 +13,7 @@ import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 
 const UpdateProject = (props) => {
     const { id } = useParams(); 
-    const { currentUser, projects, getProjects, updateProject, deleteProject, setProjectSubmitState } = useAuth(); 
+    const { currentUser, projects, getProjects, updateProject, deleteProject, setProjectSubmitState, setProjects } = useAuth(); 
     const navigate = useNavigate(); 
     const [error, setError] = useState(""); 
     const [loading, setLoading] = useState(false); 
@@ -78,6 +78,8 @@ const UpdateProject = (props) => {
     
         try {
             await deleteProject(project.id);
+            setProjects(prevProjects => prevProjects.filter(p => p.id !== project.id));
+
             setProjectSubmitState({ status: true, action: "deleted", project: project.header });
             setLoading(false);
             navigate("/dashboard/projects");

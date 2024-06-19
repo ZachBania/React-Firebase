@@ -18,6 +18,25 @@ export function AuthProvider({ children }) {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState({});
     const [projectSubmitState, setProjectSubmitState] = useState({ status: false, action: false, project: false });
+    
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            setCurrentUser(user);
+            if (user) {
+                const userDocRef = doc(db, "Users", user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+                if (userDocSnap.exists()) {
+                    setCurrentFirestoreUser(userDocSnap.data());
+                } else {
+                    console.log("currentFirestoreUser not found");
+                }
+            } else {
+                setCurrentFirestoreUser(null);
+            }
+        });
+
+        return unsubscribe;
+    }, []);
 
     const login = async (email, password) => {
         try {
@@ -69,7 +88,32 @@ export function AuthProvider({ children }) {
 
             setCurrentFirestoreUser(prevUser => ({
                 ...prevUser,
-                summary: summary !== null ? summary : ""
+                summary: summary !== null ? summary : "",
+            }));
+        }
+    }
+
+    async function updateRecentlyViewed(val) {
+        const userDocRef = doc(db, "Users", currentUser.uid);
+        const recentlyViewed = (await getDoc(userDocRef));
+        const recentlyViewedData = recentlyViewed.data().recently_viewed || [];
+
+        let value = parseInt(val);
+        if(recentlyViewedData.includes(value) == false && recentlyViewedData.length >= 5) {
+            recentlyViewedData.shift(); 
+            recentlyViewedData.push(value);
+        } else if(recentlyViewedData.includes(value) == false) {
+            recentlyViewedData.push(value);
+        }
+
+        if (val !== undefined) {
+            await updateDoc(userDocRef, {
+                recently_viewed: recentlyViewedData ? recentlyViewedData : ""
+            });
+
+            setCurrentFirestoreUser(prevUser => ({
+                ...prevUser,
+                recently_viewed: recentlyViewedData ? recentlyViewedData : ""
             }));
         }
     }
@@ -79,6 +123,23 @@ export function AuthProvider({ children }) {
         const querySnapshot = await getDocs(q);
         const projectsList = querySnapshot.docs.map(doc => ({ ...doc.data(), docId: doc.id }));
         setProjects(projectsList);
+    }
+
+    
+    async function getRecentlyViewedProjects() {
+        // Return the projects if the project id is in the User's recently_viewed array
+        
+        const userDocRef = doc(db, "Users", currentUser.uid);
+        const recentlyViewedIds = (await getDoc(userDocRef)).data().recently_viewed || [];
+
+        if (recentlyViewedIds.length === 0) {
+            return [];
+        }
+
+        const q = query(collection(db, "Projects"), where('id', 'in', recentlyViewedIds));
+        const querySnapshot = await getDocs(q);
+        const recentlyViewedProjects = querySnapshot.docs.map(doc => ({ ...doc.data(), docId: doc.id }));
+        return recentlyViewedProjects;
     }
 
     async function addProject(project) {
@@ -127,28 +188,10 @@ export function AuthProvider({ children }) {
         setProjectSubmitState({ status: false, action: false, project: false });
     }
 
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(async (user) => {
-            setCurrentUser(user);
-            if (user) {
-                const userDocRef = doc(db, "Users", user.uid);
-                const userDocSnap = await getDoc(userDocRef);
-                if (userDocSnap.exists()) {
-                    setCurrentFirestoreUser(userDocSnap.data());
-                } else {
-                    console.log("currentFirestoreUser not found");
-                }
-            } else {
-                setCurrentFirestoreUser(null);
-            }
-        });
-
-        return unsubscribe;
-    }, []);
-
     const value = {
         currentUser,
         currentFirestoreUser,
+        setCurrentFirestoreUser,
         users,
         getUsers,
         login,
@@ -159,6 +202,7 @@ export function AuthProvider({ children }) {
         updatePassword,
         updateProfile,
         updateSummary,
+        updateRecentlyViewed,
         // Projects
         project,
         setProject,
@@ -168,6 +212,7 @@ export function AuthProvider({ children }) {
         projects,
         setProjects,
         getProjects,
+        getRecentlyViewedProjects,
         // Project Submit Flag
         projectSubmitState,
         setProjectSubmitState,

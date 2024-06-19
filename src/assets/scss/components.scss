@@ -138,6 +138,7 @@ footer {
     .row {
 
         .col {
+            outline: unset;
 
             a:link,
             a:visited {
@@ -243,15 +244,14 @@ footer {
     flex-wrap: wrap;
     max-width: 100%;
     margin: 0 0 2.5em 0;
-    
+
     @media(min-width: 768px) {
-        max-width: 50em;
+        // max-width: 50em;
         margin: 0 0 2.5em 2em;
     }
 
     .project-container {
         flex: 1 1 100%;
-        // outline: black solid 1px;
         margin: 0 0 1em 0;
         font-size: 16px;
     
@@ -265,7 +265,6 @@ footer {
             .project-id {
                 margin:0;
                 padding:0;
-    
             }
 
             .project-name-container {
@@ -366,6 +365,51 @@ footer {
     }
 }
 
+.recently-viewed-list-container {
+    // background: $color_primary_light;
+    padding: .5em;
+    margin: 1em;
+    border: $color_outline solid 2.5px;
+    border-radius: .5em;
+
+    h3 {
+        font-size: 1em;
+        text-decoration: underline;
+        margin: 0 0 .25em 0;
+        padding: 0;
+    }
+
+    .recently-viewed-list {
+        margin: 0;
+        padding: 0;
+        
+        li {
+            margin: 0 0 .5em 0;
+            
+
+            &:last-child {
+                margin: 0;
+            }
+            
+            a:link,
+            a:visited {
+                color: $color_primary_dark;
+                padding: .25em 0;
+                text-decoration: none;
+                transition: .5s;
+            }
+            
+            a:hover,
+            a:active,
+            a:focus {
+                cursor: pointer;
+                text-decoration: underline;
+
+            }
+        }
+    }
+}
+
 .update-project-container {
     padding: 1em;
 
@@ -443,7 +487,6 @@ footer {
 .user-panel-container {
     display: none;
     width: 100%;
-    // border: rgba(0,0,0,.25) solid 3px;
     border-radius: .25em;
     padding: .5em;
     
@@ -455,6 +498,17 @@ footer {
     p {
         padding: 0;
         margin: 0 0 .25em 0 !important;
+    }
+
+    a:link,
+    a:visited {
+        color: $color_primary_dark;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: $color_primary;
     }
 }
 

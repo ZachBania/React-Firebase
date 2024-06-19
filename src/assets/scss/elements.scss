@@ -35,7 +35,7 @@
 }
 
 form {
-    border: rgba(0,0,0, .25) solid 1px;
+    border: $color_outline solid 1px;
     border-radius: .25em;
     padding: 1em !important;
     margin: 1em 0;
@@ -65,7 +65,7 @@ table {
             th {
                 font-weight: 800;
                 background: transparent !important;
-                outline: rgba(0,0,0, .25) solid 1px;
+                outline: $color_outline solid 1px;
                 min-width: 100px;
             }
         }
@@ -81,7 +81,7 @@ table {
             }
             td {
                 background: transparent !important;
-                outline: rgba(0,0,0, .25) solid 1px;
+                outline: $color_outline solid 1px;
             }
         }
     }
@@ -197,7 +197,7 @@ table {
                 border: unset;
                 border-radius: .25em;
                 box-shadow: unset;
-                outline: rgba(0,0,0, .25) solid 1px;
+                outline: $color_outline solid 1px;
             }
         }
 

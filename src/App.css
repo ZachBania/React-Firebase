@@ -12218,6 +12218,9 @@ footer {
   margin: 0;
   color: #FFF;
 }
+footer .row .col {
+  outline: unset;
+}
 footer .row .col a:link,
 footer .row .col a:visited {
   color: #FFF;
@@ -12319,7 +12322,6 @@ footer .row .col a:focus {
 }
 @media (min-width: 768px) {
   .projects-container {
-    max-width: 50em;
     margin: 0 0 2.5em 2em;
   }
 }
@@ -12400,6 +12402,42 @@ footer .row .col a:focus {
 .projects-panel-container table tbody tr:hover, .projects-panel-container table tbody tr:active, .projects-panel-container table tbody tr:focus {
   cursor: pointer;
 }
+.recently-viewed-list-container {
+  padding: 0.5em;
+  margin: 1em;
+  border: rgba(0, 0, 0, 0.25) solid 2.5px;
+  border-radius: 0.5em;
+}
+.recently-viewed-list-container h3, .recently-viewed-list-container .h3 {
+  font-size: 1em;
+  text-decoration: underline;
+  margin: 0 0 0.25em 0;
+  padding: 0;
+}
+.recently-viewed-list-container .recently-viewed-list {
+  margin: 0;
+  padding: 0;
+}
+.recently-viewed-list-container .recently-viewed-list li {
+  margin: 0 0 0.5em 0;
+}
+.recently-viewed-list-container .recently-viewed-list li:last-child {
+  margin: 0;
+}
+.recently-viewed-list-container .recently-viewed-list li a:link,
+.recently-viewed-list-container .recently-viewed-list li a:visited {
+  color: #000;
+  padding: 0.25em 0;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.recently-viewed-list-container .recently-viewed-list li a:hover,
+.recently-viewed-list-container .recently-viewed-list li a:active,
+.recently-viewed-list-container .recently-viewed-list li a:focus {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .update-project-container {
   padding: 1em;
 }
@@ -12486,6 +12524,15 @@ footer .row .col a:focus {
 .user-panel-container p {
   padding: 0;
   margin: 0 0 0.25em 0 !important;
+}
+.user-panel-container a:link,
+.user-panel-container a:visited {
+  color: #000;
+}
+.user-panel-container a:hover,
+.user-panel-container a:active,
+.user-panel-container a:focus {
+  color: #5fdbf8;
 }
 
 .users-panel-container {
