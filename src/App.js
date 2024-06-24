@@ -1,8 +1,8 @@
 // Core Imports
 import './App.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { AuthProvider, useAuth } from './providers/AuthContext';
+import { AuthProvider } from './providers/AuthContext';
 
 // Component Imports
 import Navigation from './components/navigation/Navigation';
@@ -24,12 +24,10 @@ import Login from './components/user/Login';
 import Container from 'react-bootstrap/Container';
 
 function App() {
-
   return (
-
     <AuthProvider>
       <Navigation />
-      <Container data-aos="fade-up">
+      <Container>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<List />} />

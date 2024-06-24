@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
-export function useAuth() {
+export function useAuth() { 
     return useContext(AuthContext);
 }
 
@@ -27,8 +27,6 @@ export function AuthProvider({ children }) {
                 const userDocSnap = await getDoc(userDocRef);
                 if (userDocSnap.exists()) {
                     setCurrentFirestoreUser(userDocSnap.data());
-                } else {
-                    console.log("currentFirestoreUser not found");
                 }
             } else {
                 setCurrentFirestoreUser(null);
@@ -82,10 +80,11 @@ export function AuthProvider({ children }) {
         const userDocRef = doc(db, "Users", currentUser.uid);
 
         if (summary !== undefined) {
+            // Update Firestore
             await updateDoc(userDocRef, {
                 summary: summary !== null ? summary : ""
             });
-
+            // Update current Firestore User
             setCurrentFirestoreUser(prevUser => ({
                 ...prevUser,
                 summary: summary !== null ? summary : "",

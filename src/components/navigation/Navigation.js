@@ -10,7 +10,7 @@ import logo from './logo512.png';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-const Navigation = (props) => {
+const Navigation = () => {
     const { currentUser, logout } = useAuth();
     const [error, setError] = useState("");
 
